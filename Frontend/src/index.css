@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Manrope:wght@500;600;700&family=JetBrains+Mono:wght@500;700&family=Playfair+Display:wght@600;700&display=swap');
+@import "tailwindcss";
+
+:root {
+	--font-brand: 'Space Grotesk', sans-serif;
+	--font-nav: 'Manrope', sans-serif;
+	--font-action: 'JetBrains Mono', monospace;
+	--font-heading: 'Playfair Display', serif;
+}
+
+.font-brand {
+	font-family: var(--font-brand);
+}
+
+.font-nav {
+	font-family: var(--font-nav);
+}
+
+.font-action {
+	font-family: var(--font-action);
+}
+
+.font-heading {
+	font-family: var(--font-heading);
+}
+
+html,
+body,
+#root {
+	background: #000;
+}
+
+body {
+	font-family: var(--font-nav);
+}
