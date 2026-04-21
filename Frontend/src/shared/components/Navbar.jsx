@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 const navItems = [
   { label: 'Solution', href: '#solution' },
   { label: 'Features', href: '#features' },
@@ -30,12 +32,12 @@ function Navbar() {
           <a href="#signin" className="font-nav text-sm font-semibold text-slate-300 hover:text-white">
             Sign In
           </a>
-          <a
-            href="#get-started"
+          <Link
+            to="/signup"
             className="font-action rounded-lg border border-white/20 bg-transparent px-5 py-3 text-sm font-extrabold uppercase tracking-wide text-slate-100 transition-colors hover:border-white/40 hover:bg-white/10"
           >
             Get Started
-          </a>
+          </Link>
         </div>
 
         <button
