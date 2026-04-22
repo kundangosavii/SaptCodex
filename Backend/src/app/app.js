@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-import authRoutes from './modules/auth/auth.routes.js';
+import authRoutes from '../modules/auth/auth.routes.js';
 
 app.use('/api/v1/auth', authRoutes);
 

@@ -1,7 +1,7 @@
-import createUser from "./auth.repository.js";
-import userWithEmail from "./auth.repository.js";
-import passwordvaildation from "./auth.repository.js";
-import user from "./auth.repository.js";
+import { createUser } from "./auth.repository.js";
+import { userWithEmail } from "./auth.repository.js";
+import {passwordvaildation} from "./auth.repository.js";
+import {getUserById} from "./auth.repository.js";
 
 
 const CreateUserService = async ({ fullname, email, password }) => {
@@ -16,15 +16,15 @@ const LoginService = async ({ email, password }) => {
         return null;
     }
 
-    passwordvaildation = await passwordvaildation(password);
+    const isPasswordValid = await passwordvaildation(userExits, password);
 
-    if (!passwordvaildation) {
+    if (!isPasswordValid) {
         return null;
     }
 
     const { accessToken, refreshToken } = await generateAccessAndRefereshToken(userExits._id)
 
-    loggedInUser = await user(userExits._id);
+    loggedInUser = await getUserById(userExits._id);
 
     return {
         loggedInUser,
@@ -32,4 +32,7 @@ const LoginService = async ({ email, password }) => {
         refreshToken
     };
 }
-export default CreateUserService
+export {
+    CreateUserService,
+    LoginService
+}

@@ -1,5 +1,5 @@
-import CreateUserService from "./auth.service.js";
-import LoginService from "./auth.service.js";
+import {CreateUserService} from "./auth.service.js";
+import {LoginService} from "./auth.service.js";
 
 const SignupController = async (req, res) => {
     const {fullname, email, password } = req.body;
@@ -47,4 +47,4 @@ const LoginController = async (req, res) => {
 
 }
 
-export {SignupController}
+export {SignupController, LoginController}

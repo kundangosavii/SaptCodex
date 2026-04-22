@@ -1,26 +1,24 @@
 import User from "../user/user.model.js";
 
 const createUser = async ({ fullname, email, password }) => {
-    const user = await User.create({ fullname, email, password });
-    return user;
+    return await User.create({ fullname, email, password });
 }
 
 const userWithEmail = async (email) => {
-    const user = await User.findOne({ email });
-    return user;
+    return await User.findOne({ email });
 }
 
-const passwordvaildation = async (password) => {
-    return await user.comparePassword(password);
+const passwordvaildation = async (userDoc, password) => {
+    return await userDoc.comparePassword(password);
 }
 
-const user = async (id) => {
-    loggedInUser = await User.findById(id).select(" -password -refreshToken")
+const getUserById = async (id) => {
+    return await User.findById(id).select(" -password -refreshToken")
 }      
 
 export { 
     createUser, 
     userWithEmail, 
     passwordvaildation, 
-    user
+    getUserById
 };
