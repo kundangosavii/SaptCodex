@@ -1,6 +1,6 @@
 import AppError from "../../errors/AppError.js";
 
-const SignupValidation = async(req, res) => {
+const SignupValidation = async(req, res, next) => {
     const { fullname, email, password } = req.body;
 
     if (!fullname || !email || !password) {
@@ -29,3 +29,7 @@ const SignupValidation = async(req, res) => {
     
     next();
 }
+
+
+
+export { SignupValidation }
