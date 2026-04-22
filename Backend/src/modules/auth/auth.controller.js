@@ -1,4 +1,5 @@
 import CreateUserService from "./auth.service.js";
+import LoginService from "./auth.service.js";
 
 const SignupController = async (req, res) => {
     const {fullname, email, password } = req.body;
@@ -12,6 +13,38 @@ const SignupController = async (req, res) => {
             email: user.email,
         }
     });
+}
+
+const LoginController = async (req, res) => {
+    const { email, password } = req.body;
+
+    const user = await LoginService({ email, password });
+
+    if (!user) {
+        return res.status(401).json({
+            message: 'Invalid email or password'
+        });
+    }
+
+    options = {
+        httpOnly: true,
+        secure: true
+    }
+
+
+    return res
+    .status(200)
+    .cookie('accessToken', user.accessToken, options )
+    .cookie('refreshToken', user.refreshToken, options )
+    .json({
+        message: 'Login successful',
+        user: {
+            user,
+            accessToken,
+            refreshToken
+        }
+    });
+
 }
 
 export {SignupController}

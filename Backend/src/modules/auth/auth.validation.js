@@ -30,6 +30,26 @@ const SignupValidation = async(req, res, next) => {
     next();
 }
 
+const LoginValidation = async(req, res, next) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        throw new AppError('All fields are required', 400);
+    }
+
+    if (typeof(email) !== 'string') {
+        throw new AppError('Email must be a string', 400);
+    }
+
+    if (typeof(password) !== 'string') {
+        throw new AppError('Password must be a string', 400);
+    }
+
+    next();
+}
 
 
-export { SignupValidation }
+export { 
+    SignupValidation, 
+    LoginValidation 
+}
