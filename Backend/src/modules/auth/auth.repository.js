@@ -20,10 +20,24 @@ const getUserByIdForTokenUpdate = async (id) => {
     return await User.findById(id);
 }
 
+const getUserByRefreshToken = async (refreshToken) => {
+    return await User.findOne({ refreshToken });
+}
+
+const clearRefreshToken = async (userId) => {
+    return await User.findByIdAndUpdate(
+        userId,
+        { $set: { refreshToken: null } },
+        { new: true }
+    );
+}
+
 export { 
     createUser, 
     userWithEmail, 
     passwordvaildation, 
     getUserById,
-    getUserByIdForTokenUpdate
+    getUserByIdForTokenUpdate,
+    getUserByRefreshToken,
+    clearRefreshToken
 };

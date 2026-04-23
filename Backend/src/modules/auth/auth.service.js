@@ -3,6 +3,8 @@ import { userWithEmail } from "./auth.repository.js";
 import {passwordvaildation} from "./auth.repository.js";
 import {getUserById} from "./auth.repository.js";
 import {getUserByIdForTokenUpdate} from "./auth.repository.js";
+import {getUserByRefreshToken} from "./auth.repository.js";
+import {clearRefreshToken} from "./auth.repository.js";
 import AppError from "../../errors/AppError.js";
 
 
@@ -54,7 +56,25 @@ const LoginService = async ({ email, password }) => {
         refreshToken
     };
 }
+
+const LogoutService = async ({ refreshToken }) => {
+    if (!refreshToken) {
+        return null;
+    }
+
+    const user = await getUserByRefreshToken(refreshToken);
+
+    if (!user) {
+        return null;
+    }
+
+    await clearRefreshToken(user._id);
+
+    return true;
+}
+
 export {
     CreateUserService,
-    LoginService
+    LoginService,
+    LogoutService
 }

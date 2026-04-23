@@ -1,5 +1,18 @@
 import {CreateUserService} from "./auth.service.js";
 import {LoginService} from "./auth.service.js";
+import {LogoutService} from "./auth.service.js";
+
+const parseCookies = (cookieHeader = "") => {
+    return cookieHeader.split(';').reduce((cookies, cookie) => {
+        const [rawKey, ...rawValue] = cookie.trim().split('=');
+        if (!rawKey) {
+            return cookies;
+        }
+
+        cookies[rawKey] = decodeURIComponent(rawValue.join('='));
+        return cookies;
+    }, {});
+}
 
 const SignupController = async (req, res) => {
     const {fullname, email, password } = req.body;
@@ -47,4 +60,24 @@ const LoginController = async (req, res) => {
 
 }
 
-export {SignupController, LoginController}
+const LogoutController = async (req, res) => {
+    const cookies = parseCookies(req.headers.cookie);
+    const refreshToken = cookies.refreshToken || req.body.refreshToken;
+
+    await LogoutService({ refreshToken });
+
+    const options = {
+        httpOnly: true,
+        secure: true
+    };
+
+    return res
+        .status(200)
+        .clearCookie('accessToken', options)
+        .clearCookie('refreshToken', options)
+        .json({
+            message: 'Logout successful'
+        });
+}
+
+export {SignupController, LoginController, LogoutController}
