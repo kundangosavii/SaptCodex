@@ -16,9 +16,14 @@ const getUserById = async (id) => {
     return await User.findById(id).select(" -password -refreshToken")
 }      
 
+const getUserByIdForTokenUpdate = async (id) => {
+    return await User.findById(id);
+}
+
 export { 
     createUser, 
     userWithEmail, 
     passwordvaildation, 
-    getUserById
+    getUserById,
+    getUserByIdForTokenUpdate
 };

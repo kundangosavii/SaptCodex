@@ -26,7 +26,7 @@ const LoginController = async (req, res) => {
         });
     }
 
-    options = {
+    const options = {
         httpOnly: true,
         secure: true
     }
@@ -39,9 +39,9 @@ const LoginController = async (req, res) => {
     .json({
         message: 'Login successful',
         user: {
-            user,
-            accessToken,
-            refreshToken
+            loggedInUser: user.loggedInUser,
+            accessToken: user.accessToken,
+            refreshToken: user.refreshToken
         }
     });
 
