@@ -1,4 +1,8 @@
-import { CreateUserService, LoginService, LogoutService } from "./auth.service.js";
+import { 
+    CreateUserService, 
+    LoginService, 
+    LogoutService 
+} from "./auth.service.js";
 
 const parseCookies = (cookieHeader = "") => {
     return cookieHeader.split(';').reduce((cookies, cookie) => {
