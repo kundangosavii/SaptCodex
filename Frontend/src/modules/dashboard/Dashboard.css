@@ -76,18 +76,34 @@
 	width: var(--sidebar-collapsed, 84px);
 }
 
-.sidebar-top{ display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom: 18px; }
+.sidebar-top { 
+    display:flex; 
+    align-items:center; 
+    justify-content:space-between; 
+    gap:8px; 
+    margin-bottom: 18px;
+    margin-right: 8px;
+
+}
 .brand{ display:flex; align-items:center; gap:12px; }
 .brand-title{ font-weight:800; font-size:18px; color: var(--accent); }
 .brand-sub{ font-size:11px; color: var(--muted-2); margin-top:2px; }
-.brand-icon{ width:40px; height:40px; border-radius:8px; background: rgba(255,255,255,0.04); display:flex; align-items:center; justify-content:center; font-weight:700; }
 
-.sidebar-toggle{ background:transparent; border:none; color:var(--muted); cursor:pointer; padding:6px; border-radius:8px }
+.sidebar-toggle {
+     background: transparent; 
+     border:1px solid rgba(255,255,255,0.04); 
+     color:var(--muted); 
+     cursor:pointer; 
+     padding:6px; 
+     border-radius:8px 
+}
 
-/* ensure the toggle and brand icon render above the Topbar when needed */
-.sidebar-toggle, .brand-icon{ position: relative; z-index: 800; }
-
-.sidebar-nav{ display:flex; flex-direction:column; gap:10px; margin-top:6px; }
+.sidebar-nav{ 
+    display:flex; 
+    flex-direction:column; 
+    gap:10px; 
+    margin-top:6px; 
+}
 .nav-item{ display:flex; align-items:center; gap:12px; padding:12px 14px; color:var(--muted-2); border-radius:999px; text-decoration:none; transition: all 160ms; }
 .nav-item .nav-icon{ width:28px; height:28px; display:inline-flex; align-items:center; justify-content:center; font-size:16px }
 .nav-item:hover{ background: rgba(255,255,255,0.02); color:var(--accent); }
