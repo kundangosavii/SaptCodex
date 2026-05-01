@@ -1,0 +1,75 @@
+
+.topbar {
+  padding: 18px 24px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius: 12px;
+  margin: 16px 24px;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+/* Shifted states when sidebar is open/closed; values reference Dashboard.css variables */
+.topbar.shift-open {
+  margin-left: calc(24px + 240px); /* container right margin + sidebar open width */
+  width: calc(100% - (24px + 240px + 24px));
+  transition: margin-left 220ms ease, width 220ms ease;
+}
+.topbar.shift-closed {
+  margin-left: calc(24px + 84px); /* container right margin + sidebar closed width */
+  width: calc(100% - (24px + 84px + 24px));
+  transition: margin-left 220ms ease, width 220ms ease;
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.topbar-left { flex: 1; min-width: 0; }
+
+.greeting-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+.greeting-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+}
+
+.topbar-center {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.streak {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.03);
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+.streak-emoji { font-size: 14px; }
+.streak-text { font-size: 13px; color: #fff; font-weight: 600; }
+
+.placement { width: 220px; }
+.placement-label { font-size: 11px; color: rgba(255,255,255,0.6); font-weight: 700; margin-bottom: 6px; }
+.placement-bar { height: 8px; background: rgba(255,255,255,0.04); border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.02); }
+.placement-fill { height: 100%; background: linear-gradient(90deg,#3b82f6,#1e40af); }
+
+.topbar-right { display: flex; align-items: center; gap: 12px; }
+.icon-btn { background: transparent; border: none; color: rgba(255,255,255,0.85); font-size: 16px; padding: 8px; border-radius: 8px; cursor: pointer; }
+.icon-btn:hover { background: rgba(255,255,255,0.02); }
+.avatar { width: 40px; height: 40px; border-radius: 999px; background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; }
+.avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 999px; }
+.avatar-fallback { color: #fff; font-weight: 700; }
+
+@media (max-width: 900px) {
+  .placement { display: none; }
+  .topbar { margin: 12px; }
+}
