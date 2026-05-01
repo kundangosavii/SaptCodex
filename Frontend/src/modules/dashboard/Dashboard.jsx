@@ -43,7 +43,7 @@ export default function Dashboard() {
 									<div className="brand-sub">EngineeringPlacement</div>
 								</div>
 							) : (
-								<div className="brand-icon">SC</div>
+                                <div className="brand-icon">SC</div>
 							)}
 						</div>
 						<button className="sidebar-toggle" onClick={() => setSidebarOpen(!sidebarOpen)}>

@@ -9,13 +9,13 @@
 
 /* Shifted states when sidebar is open/closed; values reference Dashboard.css variables */
 .topbar.shift-open {
-  margin-left: calc(24px + 240px); /* container right margin + sidebar open width */
-  width: calc(100% - (24px + 240px + 24px));
+  margin-left: calc(26px + 250px); /* container right margin + sidebar open width */
+  width: calc(100% - (25px + 250px + 25px));
   transition: margin-left 220ms ease, width 220ms ease;
 }
 .topbar.shift-closed {
-  margin-left: calc(24px + 84px); /* container right margin + sidebar closed width */
-  width: calc(100% - (24px + 84px + 24px));
+  margin-left: calc(25px + 84px); /* container right margin + sidebar closed width */
+  width: calc(100% - (25px + 84px + 25px));
   transition: margin-left 220ms ease, width 220ms ease;
 }
 

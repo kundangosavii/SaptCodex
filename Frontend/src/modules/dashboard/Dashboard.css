@@ -1,14 +1,15 @@
 /* Sidebar and Dashboard layout styles */
 
 :root{
-	--bg-0: #05060a;
-	--bg-1: #071122;
-	--bg-2: #000000;
+	--bg-0: #000000;
 	--muted: rgba(255,255,255,0.6);
 	--muted-2: rgba(255,255,255,0.45);
 	--accent: #61b6ff;
 	--accent-deep: #2b9bff;
 }
+
+/* default sidebar left offset used for Topbar alignment */
+.dashboard-root { --sidebar-left: 20px; }
 
 .dashboard-root{
 	display: flex;
@@ -22,8 +23,8 @@
 	display: flex;
 	gap: 24px;
 	align-items: stretch;
-	flex: 1; /* fill remaining height under topbar */
-	padding: 20px; /* outer spacing */
+	flex: 1; 
+	padding: 20px;
 	transition: padding-left 220ms ease;
 }
 
@@ -41,7 +42,7 @@
 	transition: width 220ms ease, transform 220ms ease;
 	/* fix the sidebar to the left and span full viewport height */
 	position: fixed;
-	left: 20px; /* align with container padding */
+	left: var(--sidebar-left, 20px); /* align with container padding */
 	top: 8px; /* small offset from window top */
 	height: calc(100vh - 16px);
 	margin: 0; /* spacing handled by container */
@@ -49,6 +50,26 @@
 	display: flex;
 	flex-direction: column;
 	z-index: 600;
+}
+
+/* subtle vertical divider between sidebar and content */
+.sidebar::after{
+	content: "";
+	position: absolute;
+	right: -16px; /* sits between fixed sidebar and content */
+	top: 0;
+	bottom: 0;
+	width: 2px;
+	border-radius: 2px;
+	background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+	box-shadow: 0 0 0 1px rgba(255,255,255,0.01) inset;
+	pointer-events: none;
+}
+
+/* when sidebar is collapsed, bring divider closer */
+.dashboard-root.sidebar-closed .sidebar::after{
+	right: -8px;
+	background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
 }
 
 .sidebar.closed{
@@ -63,17 +84,21 @@
 
 .sidebar-toggle{ background:transparent; border:none; color:var(--muted); cursor:pointer; padding:6px; border-radius:8px }
 
+/* ensure the toggle and brand icon render above the Topbar when needed */
+.sidebar-toggle, .brand-icon{ position: relative; z-index: 800; }
+
 .sidebar-nav{ display:flex; flex-direction:column; gap:10px; margin-top:6px; }
 .nav-item{ display:flex; align-items:center; gap:12px; padding:12px 14px; color:var(--muted-2); border-radius:999px; text-decoration:none; transition: all 160ms; }
 .nav-item .nav-icon{ width:28px; height:28px; display:inline-flex; align-items:center; justify-content:center; font-size:16px }
 .nav-item:hover{ background: rgba(255,255,255,0.02); color:var(--accent); }
+
 .nav-item.active{ 
-    
     background: linear-gradient(90deg, rgba(97,182,255,0.08), 
     rgba(43,155,255,0.05)); 
     color:var(--accent); 
     padding-left: 18px; 
 }
+
 .nav-text{ font-weight:600 }
 
 .sidebar-bottom{ margin-top: auto; padding-top: 16px; }
