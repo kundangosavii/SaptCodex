@@ -12,9 +12,7 @@
 	display: grid;
 	max-width: 1180px;
 	gap: 1.25rem;
-	border: 1px solid rgba(172, 185, 208, 0.14);
-	border-radius: 30px;
-	background: rgba(11, 18, 27, 0.68);
+	background: rgba(0, 0, 0, 0.68);
 	backdrop-filter: blur(8px);
 	box-shadow:
 		0 22px 48px rgba(1, 5, 12, 0.54),
@@ -25,8 +23,8 @@
 .auth-brand-panel {
 	padding: 2rem 1.4rem;
 	border-radius: 24px;
-	background: linear-gradient(170deg, rgba(15, 24, 35, 0.92), rgba(14, 22, 33, 0.76));
-	border: 1px solid rgba(194, 206, 228, 0.1);
+	background: rgba(0, 0, 0, 0.68);
+	border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .auth-eyebrow {
@@ -96,8 +94,8 @@
 .auth-form-panel {
 	padding: 1.3rem;
 	border-radius: 24px;
-	background: linear-gradient(182deg, rgba(12, 21, 31, 0.96) 0%, rgba(16, 27, 40, 0.92) 100%);
-	border: 1px solid rgba(191, 206, 228, 0.14);
+	background: rgba(0, 0, 0, 0.68);
+	
     font-family: var(--font-nav);
 }
 
