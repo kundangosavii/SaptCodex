@@ -1,5 +1,7 @@
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import './Auth.css'
+import { signup } from '../../api/auth'
 
 const onboardingPillars = [
 	{
@@ -13,6 +15,33 @@ const onboardingPillars = [
 ]
 
 function Signup() {
+	const [form, setform] = useState({
+		fullname: '',
+		email: '',
+		password: '',
+		confirmPassword: '',
+		consent: false,
+	})
+
+	const handleChange = (e) => {
+		setform({ 
+			...form, 
+			[e.target.name]: e.target.value 
+		})
+	}
+
+	const handleSubmit = async (e) => {
+		e.preventDefault()
+		try {
+			const response = await signup(form)
+			console.log('Signup successful:', response.data)
+			// Redirect to signin or dashboard
+		} catch (error) {
+			console.error('Signup failed:', error)
+			// Show error message to user
+		}
+	}
+
 	return (
 		<main className="auth-shell bg-black">
 
@@ -43,36 +72,42 @@ function Signup() {
                         <h1 className='text-white text-3xl underline'>Signup</h1>
                     </div>
 
-					<form className="auth-form" onSubmit={(event) => event.preventDefault()}>
+					<form className="auth-form" onSubmit={handleSubmit}>
 						<label htmlFor="signup-name">Full name</label>
-						<input id="signup-name" type="text" placeholder="Aarav Sharma" autoComplete="name" />
+						<input id="signup-name" name="fullname" type="text" placeholder="Aarav Sharma" autoComplete="name" onChange={handleChange} />
 
 						<label htmlFor="signup-email">Email address</label>
 						<input
 							id="signup-email"
+							name="email"
 							type="email"
 							placeholder="name@gmail.com"
 							autoComplete="email"
+							onChange={handleChange}
 						/>
 
 						<label htmlFor="signup-password">Password</label>
 						<input
 							id="signup-password"
+							name="password"
 							type="password"
 							placeholder="Create a strong password"
 							autoComplete="new-password"
+							onChange={handleChange}
 						/>
 
 						<label htmlFor="signup-confirm">Confirm password</label>
 						<input
 							id="signup-confirm"
+							name="confirmPassword"
 							type="password"
 							placeholder="Repeat password"
 							autoComplete="new-password"
+							onChange={handleChange}
 						/>
 
-						<label className="auth-consent" htmlFor="signup-consent">
-							<input id="signup-consent" type="checkbox" />
+						<label className="auth-consent" htmlFor="consent">
+							<input id="signup-consent" name="consent" type="checkbox" onChange={handleChange} />
 							<span>I agree to the terms and privacy policy.</span>
 						</label>
 
