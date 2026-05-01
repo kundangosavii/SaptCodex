@@ -3,7 +3,7 @@ import './Dashboard.css'
 import Topbar from './Topbar.jsx'
 
 
-import { MdDashboard } from "react-icons/md";
+import { LayoutDashboard, CircleDot, BookOpenText, Settings } from 'lucide-react'
 
 const MenuIcon = () => (
 	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -37,35 +37,33 @@ export default function Dashboard() {
 				<aside className={`sidebar ${sidebarOpen ? 'open' : 'closed'}`}>
 					<div className="sidebar-top">
 						<div className="brand">
-							{sidebarOpen ? (
+							{sidebarOpen && (
 								<div>
 									<div className="brand-title">SubCodeX</div>
 									<div className="brand-sub">EngineeringPlacement</div>
 								</div>
-							) : (
-                                <div className="brand-icon">SC</div>
 							)}
 						</div>
-						<button className="sidebar-toggle" onClick={() => setSidebarOpen(!sidebarOpen)}>
-							{sidebarOpen ? <XIcon /> : <MenuIcon />}
-						</button>
+                        <button className="sidebar-toggle" onClick={() => setSidebarOpen(!sidebarOpen)}>
+                            {sidebarOpen ? <XIcon /> : <MenuIcon />}
+                        </button>
 					</div>
 
 					<nav className="sidebar-nav">
 						<a href="#" className="nav-item active">
-							<span className="nav-icon"><MdDashboard /></span>
+							<span className="nav-icon"><LayoutDashboard /></span>
 							{sidebarOpen && <span className="nav-text">Dashboard</span>}
 						</a>
 						<a href="#" className="nav-item">
-							<span className="nav-icon">📈</span>
+							<span className="nav-icon"><CircleDot /></span>
 							{sidebarOpen && <span className="nav-text">Progress</span>}
 						</a>
 						<a href="#" className="nav-item">
-							<span className="nav-icon">🗺️</span>
+							<span className="nav-icon"><BookOpenText /></span>
 							{sidebarOpen && <span className="nav-text">Roadmap</span>}
 						</a>
 						<a href="#" className="nav-item">
-							<span className="nav-icon">⚙️</span>
+							<span className="nav-icon"><Settings /></span>
 							{sidebarOpen && <span className="nav-text">Settings</span>}
 						</a>
 					</nav>
