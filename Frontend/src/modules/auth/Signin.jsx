@@ -1,7 +1,37 @@
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import './Auth.css'
-
+import { signin } from '../../api/auth'
 function Signin() {
+	const [form, setform] = useState({
+		email : '',
+		password : '',
+	})
+
+	const handlechange = (e) => {
+		setform({
+			...form,
+			[e.target.name] : e.target.value
+		})
+	}
+
+	const handlesubmit = async (e) => {
+		e.preventDefault();
+		try {
+			const res = await signin(form);
+
+			// store token in local storage
+			localStorage.setItem('token', res.data.token); 
+
+			console.log('Signin successful:', res.data);
+			
+		} catch (error) {
+			console.error('Signin failed:', error.response ? error.response.data : error.message);
+		}
+
+
+	}
+
 	return (
 		<main className="auth-shell">
 
@@ -33,13 +63,15 @@ function Signin() {
                         <h1 className='text-white text-3xl underline'>Signin</h1>
                     </div>
 
-					<form className="auth-form" onSubmit={(event) => event.preventDefault()}>
+					<form className="auth-form" onSubmit={handlesubmit}>
 						<label htmlFor="signin-email">Email address</label>
 						<input
 							id="signin-email"
 							type="email"
+							name="email"
 							placeholder="example@gmail.com"
 							autoComplete="email"
+							onChange={handlechange}
 						/>
 
 						<div className="auth-password-row">
@@ -49,8 +81,10 @@ function Signin() {
 						<input
 							id="signin-password"
 							type="password"
+							name="password"
 							placeholder="Enter your password"
 							autoComplete="current-password"
+							onChange={handlechange}
 						/>
 
 						<button type="submit">Login to dashboard</button>
