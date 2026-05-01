@@ -1,5 +1,6 @@
 import React from 'react'
 import './Topbar.css'
+import { BellRing, Zap } from 'lucide-react'
 
 export default function Topbar({ user = { name: 'Arjun', avatar: null }, streak = 5, progress = 40, sidebarOpen = true }) {
   const shiftClass = sidebarOpen ? 'shift-open' : 'shift-closed'
@@ -28,8 +29,8 @@ export default function Topbar({ user = { name: 'Arjun', avatar: null }, streak 
         </div>
 
         <div className="topbar-right">
-          <button className="icon-btn" aria-label="notifications">🔔</button>
-          <button className="icon-btn" aria-label="quick-actions">⚡</button>
+          <button className="icon-btn" aria-label="notifications"><BellRing /></button>
+          <button className="icon-btn" aria-label="quick-actions"><Zap /></button>
           <div className="avatar">
             {user.avatar ? <img src={user.avatar} alt="avatar" /> : <div className="avatar-fallback">AB</div>}
           </div>
