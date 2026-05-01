@@ -3,7 +3,7 @@
 :root{
 	--bg-0: #05060a;
 	--bg-1: #071122;
-	--bg-2: #0b1622;
+	--bg-2: #000000;
 	--muted: rgba(255,255,255,0.6);
 	--muted-2: rgba(255,255,255,0.45);
 	--accent: #61b6ff;
@@ -35,7 +35,7 @@
 .dashboard-root.sidebar-closed .dashboard-container { padding-left: calc(var(--sidebar-collapsed) + 28px); }
 
 .sidebar{
-	background: linear-gradient(180deg, var(--bg-1), var(--bg-2));
+	background: var(--bg-2);
 	padding: 22px 14px;
 	width: var(--sidebar-width, 240px);
 	transition: width 220ms ease, transform 220ms ease;
@@ -67,7 +67,13 @@
 .nav-item{ display:flex; align-items:center; gap:12px; padding:12px 14px; color:var(--muted-2); border-radius:999px; text-decoration:none; transition: all 160ms; }
 .nav-item .nav-icon{ width:28px; height:28px; display:inline-flex; align-items:center; justify-content:center; font-size:16px }
 .nav-item:hover{ background: rgba(255,255,255,0.02); color:var(--accent); }
-.nav-item.active{ background: linear-gradient(90deg, rgba(97,182,255,0.08), rgba(43,155,255,0.05)); color:var(--accent); box-shadow: inset 6px 0 0 var(--accent-deep); padding-left: 18px; }
+.nav-item.active{ 
+    
+    background: linear-gradient(90deg, rgba(97,182,255,0.08), 
+    rgba(43,155,255,0.05)); 
+    color:var(--accent); 
+    padding-left: 18px; 
+}
 .nav-text{ font-weight:600 }
 
 .sidebar-bottom{ margin-top: auto; padding-top: 16px; }
