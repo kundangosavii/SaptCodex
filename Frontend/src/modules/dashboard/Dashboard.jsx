@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './Dashboard.css'
 import Topbar from './Topbar.jsx'
 
-import { LayoutDashboard, CircleDot, BookOpenText, Settings, Rocket } from 'lucide-react'
+import { LayoutDashboard, CircleDot, BookOpenText, Settings, Rocket, CircleAlert, CircleCheckBig, Flame } from 'lucide-react'
 
 const MenuIcon = () => (
 	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -76,7 +76,7 @@ export default function Dashboard() {
 
 						{/* Bottom Button */}
 						<div className="mt-auto pt-4">
-							<button className="w-full flex gap-2.5 items-center justify-center p-3.5 rounded-xl from-accent to-accent-deep text-teal-900 font-black border-none cursor-pointer shadow-lg hover:shadow-xl transition-shadow">
+							<button className="bg-blue-600 w-full flex gap-2.5 items-center justify-center p-3.5 rounded-xl from-accent to-accent-deep font-black border-none cursor-pointer shadow-lg hover:shadow-xl transition-shadow">
 								<span className="text-base"><Rocket /></span>
 								{sidebarOpen && <span>Start Practice</span>}
 							</button>
@@ -139,10 +139,10 @@ export default function Dashboard() {
 						{/* Right Column */}
 						<aside>
 							{/* Alert Section */}
-							<section className="bg-white/5 border border-white/10 rounded-lg p-4 mb-6">
+							<section className="bg-red-600/40 border border-white/10 rounded-lg p-4 mb-6">
 								<div className="flex items-center gap-3 mb-3">
-									<div className="text-xl">⚠️</div>
-									<h4 className="font-semibold text-sm uppercase tracking-wide">URGENT ALERT</h4>
+									<div className="text-xl text-red-500"><CircleAlert /></div>
+									<h4 className="font-semibold text-sm uppercase tracking-wide text-red-500">URGENT ALERT</h4>
 								</div>
 								<p className="text-sm text-gray-300 mb-2">You are falling behind your goal.</p>
 								<p className="text-xs text-gray-500 mb-4">Complete 2 more problems this week to stay on track for the FAANG interviews.</p>
@@ -154,12 +154,12 @@ export default function Dashboard() {
 								<h4 className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">INSIGHTS</h4>
 								<div className="grid grid-cols-2 gap-3">
 									<div className="bg-white/5 border border-white/10 rounded-lg p-3 text-center">
-										<div className="text-2xl mb-1">✔️</div>
+										<div className="text-2xl mb-1"><CircleCheckBig /></div>
 										<div className="font-bold text-lg text-white">24</div>
 										<div className="text-xs text-gray-500">Tasks Done</div>
 									</div>
 									<div className="bg-white/5 border border-white/10 rounded-lg p-3 text-center">
-										<div className="text-2xl mb-1">⚡</div>
+										<div className="text-2xl mb-1"><Flame /></div>
 										<div className="font-bold text-lg text-white">92%</div>
 										<div className="text-xs text-gray-500">Consistency</div>
 									</div>
@@ -167,7 +167,7 @@ export default function Dashboard() {
 							</section>
 
 							{/* Premium Section */}
-							<section className= "from-accent/20 to-accent-deep/20 border border-accent/30 rounded-lg p-4">
+							<section className= "from-accent/20 to-accent-deep/20 border-4 border-accent/30 rounded-lg p-4">
 								<h4 className="font-semibold mb-2">Master System Design with<br/>SabtCodeX Pro</h4>
 								<p className="text-xs text-gray-400 mb-4">Unlock 52+ case studies from Uber, Netflix, and Amazon on scaling systems.</p>
 								<button className="w-full bg-accent text-black font-bold py-2 rounded-lg hover:bg-accent/90 transition-colors text-sm">
