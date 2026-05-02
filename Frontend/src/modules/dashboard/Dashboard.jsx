@@ -3,7 +3,7 @@ import './Dashboard.css'
 import Topbar from './Topbar.jsx'
 
 
-import { LayoutDashboard, CircleDot, BookOpenText, Settings } from 'lucide-react'
+import { LayoutDashboard, CircleDot, BookOpenText, Settings, Rocket } from 'lucide-react'
 
 const MenuIcon = () => (
 	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -39,7 +39,7 @@ export default function Dashboard() {
 						<div className="brand">
 							{sidebarOpen && (
 								<div>
-									<div className="brand-title">SubCodeX</div>
+									<div className="brand-title">SaptCodeX</div>
 									<div className="brand-sub">EngineeringPlacement</div>
 								</div>
 							)}
@@ -70,7 +70,7 @@ export default function Dashboard() {
 
 					<div className="sidebar-bottom">
 						<button className="start-practice">
-							<span className="rocket">🚀</span>
+							<span className="rocket"><Rocket /></span>
 							{sidebarOpen && <span>Start Practice</span>}
 						</button>
 					</div>
@@ -80,7 +80,8 @@ export default function Dashboard() {
 					<div className="content-wrapper">
 						<div className="left-column">
 							<section className="roadmap-section">
-								<h3 className="section-title">Today's Roadmap</h3>
+								<h3 className='section-title-top'>FOCUS SESSION</h3>
+								<h1 className="section-title">Today's Roadmap</h1>
 								<div className="tasks-container">
 									{tasks.map((task) => (
 										<article key={task.id} className={`task-card ${task.status}`}>
