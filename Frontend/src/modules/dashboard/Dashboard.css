@@ -1,76 +1,15 @@
-/* Sidebar and Dashboard layout styles */
+/* Dashboard component styles */
 
-:root{
-	--bg-0: #000000;
-	--muted: rgba(255,255,255,0.6);
-	--muted-2: rgba(255,255,255,0.45);
+:root {
 	--accent: #61b6ff;
 	--accent-deep: #2b9bff;
 }
 
-/* default sidebar left offset used for Topbar alignment */
-.dashboard-root { 
-	--sidebar-left: 20px; 
-}
-
-.dashboard-root{
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-	background: var(--bg-0);
-	color: #fff;
-}
-
-.dashboard-container{
-	display: flex;
-	gap: 24px;
-	align-items: stretch;
-	flex: 1; 
-	padding: 20px;
-	transition: padding-left 220ms ease;
-}
-
-/* Sidebar open/closed variables applied on root */
-.dashboard-root.sidebar-open { 
-	--sidebar-width: 240px; 
-	--sidebar-collapsed: 84px; 
-}
-
-.dashboard-root.sidebar-closed { 
-	--sidebar-width: 84px; 
-	--sidebar-collapsed: 84px; 
-}
-
-.dashboard-root.sidebar-open .dashboard-container { 
-	padding-left: calc(var(--sidebar-width) + 28px); 
-}
-
-.dashboard-root.sidebar-closed .dashboard-container { 
-	padding-left: calc(var(--sidebar-collapsed) + 28px); 
-}
-
-.sidebar{
-	background: var(--bg-2);
-	padding: 22px 14px;
-	width: var(--sidebar-width, 240px);
-	transition: width 220ms ease, transform 220ms ease;
-	/* fix the sidebar to the left and span full viewport height */
-	position: fixed;
-	left: var(--sidebar-left, 20px); /* align with container padding */
-	top: 8px; /* small offset from window top */
-	height: calc(100vh - 16px);
-	margin: 0; /* spacing handled by container */
-	border-radius: 12px;
-	display: flex;
-	flex-direction: column;
-	z-index: 600;
-}
-
-/* subtle vertical divider between sidebar and content */
-.sidebar::after{
+/* Sidebar vertical divider */
+.sidebar-wrapper::after {
 	content: "";
 	position: absolute;
-	right: -16px; /* sits between fixed sidebar and content */
+	right: -16px;
 	top: 0;
 	bottom: 0;
 	width: 2px;
@@ -80,155 +19,56 @@
 	pointer-events: none;
 }
 
-/* when sidebar is collapsed, bring divider closer */
-.dashboard-root.sidebar-closed .sidebar::after{
-	right: -8px;
-	background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+/* Sidebar navigation items */
+.sidebar-nav-item {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 12px 14px;
+	color: rgb(107, 114, 128);
+	border-radius: 9999px;
+	text-decoration: none;
+	transition: all 160ms;
 }
 
-.sidebar.closed{
-	width: var(--sidebar-collapsed, 84px);
-}
-
-.sidebar-top { 
-    display:flex; 
-    align-items:center; 
-    justify-content:space-between; 
-    gap:8px; 
-    margin-bottom: 18px;
-    margin-right: 8px;
-
-}
-.brand { 
-	display:flex; 
-	align-items:center; 
-	gap:12px; 
-}
-
-.brand-title { 
-	font-weight:800; 
-	font-size:18px; 
-	color: var(--accent); 
-}
-
-.brand-sub { 
-	font-size:11px; 
-	color: var(--muted-2); 
-	margin-top:2px; 
-}
-
-.sidebar-toggle {
-     background: transparent; 
-     border:1px solid rgba(255,255,255,0.04); 
-     color:var(--muted); 
-     cursor:pointer; 
-     padding:6px; 
-     border-radius:8px 
-}
-
-.sidebar-nav{ 
-    display:flex; 
-    flex-direction:column; 
-    gap:10px; 
-    margin-top:6px; 
-}
-.nav-item { 
-	display:flex; 
-	align-items:center; 
-	gap:12px; 
-	padding:12px 14px; 
-	color:var(--muted-2); 
-	border-radius:999px; 
-	text-decoration:none; 
-	transition: all 160ms; 
-}
-
-.nav-item .nav-icon { 
-	width:28px; 
-	height:28px; 
-	display:inline-flex; 
-	align-items:center; 
-	justify-content:center; 
-	font-size:16px 
-}
-
-.nav-item:hover { 
-	background: rgba(255,255,255,0.02); 
-	color:var(--accent); 
-}
-
-.nav-item.active{ 
-    background: linear-gradient(90deg, rgba(97,182,255,0.08), 
-    rgba(43,155,255,0.05)); 
-    color:var(--accent); 
-    padding-left: 18px; 
-}
-
-.nav-text { 
-	font-weight:600 
-}
-
-.sidebar-bottom { 
-	margin-top: auto; 
-	padding-top: 16px; 
-}
-.start-practice { 
-	width:100%; 
-	display:flex; 
-	gap:10px; 
-	align-items:center;
-	justify-content:center; 
-	padding:14px 16px; 
-	border-radius:12px; 
-	background: linear-gradient(90deg,var(--accent),var(--accent-deep)); 
-	color: #042431; 
-	font-weight:800; 
-	border:none; 
-	cursor:pointer; 
-	box-shadow: 0 6px 18px rgba(43,155,255,0.12); 
-}
-
-.start-practice .rocket { 
-	font-size:16px 
-}
-
-/* Main content area adjust */
-.main-content { 
-	flex:1; 
-	min-height: calc(100vh - 40px); 
-	overflow:auto; 
-	padding: 24px; 
-}
-
-.content-wrapper { 
-	display:grid; 
-	grid-template-columns: 1fr 320px; 
-	gap:20px 
-}
-
-/* Section titles */
-.section-title-top {
-	font-size: 12px;
-	font-weight: 600;
-	letter-spacing: 2px;
-	text-transform: uppercase;
+.sidebar-nav-item:hover {
+	background-color: rgba(255, 255, 255, 0.05);
 	color: var(--accent);
-	margin: 0;
-	margin-bottom: 8px;
-	opacity: 0.9;
 }
 
-.section-title {
-	font-size: 32px;
-	font-weight: 700;
-	color: #ffffff;
-	margin: 0;
-	margin-bottom: 24px;
-	letter-spacing: -0.5px;
+.sidebar-nav-item.active {
+	background: linear-gradient(90deg, rgba(97, 182, 255, 0.1), rgba(43, 155, 255, 0.05));
+	color: var(--accent);
+	padding: 12px 10px 12px 16px;
+}
+
+/* Task cards */
+.task-card {
+	border-color: rgb(55, 65, 81);
+	background-color: rgba(255, 255, 255, 0.02);
+}
+
+.task-card.todo {
+	border-color: rgb(55, 65, 81);
+}
+
+.task-card.completed {
+	border-color: rgba(34, 197, 94, 0.2);
+	background-color: rgba(34, 197, 94, 0.05);
+}
+
+.task-card:hover {
+	background-color: rgba(255, 255, 255, 0.05);
 }
 
 /* Responsive */
-@media (max-width:900px){
-	.sidebar{ position: fixed; left: 12px; top: 80px; z-index:2000 }
+@media (max-width: 900px) {
+	.sidebar-wrapper {
+		position: fixed !important;
+		left: 12px;
+		top: 80px;
+		z-index: 2000;
+	}
 }
+
 
