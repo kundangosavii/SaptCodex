@@ -37,7 +37,7 @@ export default function Dashboard() {
 				<aside className={`sidebar-wrapper ${sidebarOpen ? 'w-60' : 'w-20'} transition-all duration-220`}>
 					<div className="fixed left-5 top-2 rounded-xl flex flex-col z-600" style={{ height: 'calc(100vh - 16px)', width: sidebarOpen ? '240px' : '84px', transition: 'all 220ms ease' }}>
 						{/* Sidebar Content */}
-						<div className="flex items-center justify-between gap-2 mb-4 mr-2">
+						<div className={`flex items-center gap-2 mb-4 mr-2 ${sidebarOpen ? 'justify-between' : 'justify-center'}`}>
 							<div className="flex items-center gap-3 mt-4">
 								{sidebarOpen && (
 									<div>
@@ -47,7 +47,7 @@ export default function Dashboard() {
 								)}
 							</div>
 							<button 
-								className="bg-transparent border border-white/10 text-gray-400 cursor-pointer p-1.5 rounded-lg hover:border-white/20 transition-colors mt-4"
+								className="bg-transparent border border-white/10 text-gray-400 cursor-pointer p-1.5 rounded-lg hover:border-white/20 transition-colors mt-4 -ml-3"
 								onClick={() => setSidebarOpen(!sidebarOpen)}
 							>
 								{sidebarOpen ? <XIcon /> : <MenuIcon />}
