@@ -37,7 +37,7 @@ export default function Dashboard() {
 				<aside className={`sidebar-wrapper ${sidebarOpen ? 'w-60' : 'w-20'} transition-all duration-220`}>
 					<div className="fixed left-5 top-2 rounded-xl flex flex-col z-600" style={{ height: 'calc(100vh - 16px)', width: sidebarOpen ? '240px' : '84px', transition: 'all 220ms ease' }}>
 						{/* Sidebar Content */}
-						<div className={`flex items-center gap-2 mb-4 mr-2 ${sidebarOpen ? 'justify-between' : 'justify-center'}`}>
+						<div className={`flex items-center gap-2 mb-4 mr-2 ${sidebarOpen ? 'justify-between' : 'justify-center ml-4'}`}>
 							<div className="flex items-center gap-3 mt-4">
 								{sidebarOpen && (
 									<div>
@@ -55,20 +55,20 @@ export default function Dashboard() {
 						</div>
 
 						{/* Navigation */}
-						<nav className="flex flex-col gap-2.5 mt-1.5">
-							<a href="#" className="sidebar-nav-item active">
+						<nav className={`flex flex-col gap-2.5 mt-1.5 ${sidebarOpen ? '' : 'items-center'}`}>
+							<a href="#" className={`sidebar-nav-item active ${sidebarOpen ? '' : 'w-12 h-12 justify-center p-0!'}`}>
 								<span className="w-7 h-7 inline-flex items-center justify-center text-base"><LayoutDashboard /></span>
 								{sidebarOpen && <span className="font-semibold">Dashboard</span>}
 							</a>
-							<a href="#" className="sidebar-nav-item">
+							<a href="#" className={`sidebar-nav-item ${sidebarOpen ? '' : 'w-12 h-12 justify-center p-0'}`}>
 								<span className="w-7 h-7 inline-flex items-center justify-center text-base"><CircleDot /></span>
 								{sidebarOpen && <span className="font-semibold">Progress</span>}
 							</a>
-							<a href="#" className="sidebar-nav-item">
+							<a href="#" className={`sidebar-nav-item ${sidebarOpen ? '' : 'w-12 h-12 justify-center p-0'}`}>
 								<span className="w-7 h-7 inline-flex items-center justify-center text-base"><BookOpenText /></span>
 								{sidebarOpen && <span className="font-semibold">Roadmap</span>}
 							</a>
-							<a href="#" className="sidebar-nav-item">
+							<a href="#" className={`sidebar-nav-item ${sidebarOpen ? '' : 'w-12 h-12 justify-center p-0'}`}>
 								<span className="w-7 h-7 inline-flex items-center justify-center text-base"><Settings /></span>
 								{sidebarOpen && <span className="font-semibold">Settings</span>}
 							</a>
