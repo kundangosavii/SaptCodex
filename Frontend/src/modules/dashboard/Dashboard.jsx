@@ -75,7 +75,7 @@ export default function Dashboard() {
 						</nav>
 
 						{/* Bottom Button */}
-						<div className="mt-auto pt-4">
+						<div className="mt-auto pt-4 mb-6">
 							<button className="bg-blue-600 w-full flex gap-2.5 items-center justify-center p-3.5 rounded-xl from-accent to-accent-deep font-black border-none cursor-pointer shadow-lg hover:shadow-xl transition-shadow">
 								<span className="text-base"><Rocket /></span>
 								{sidebarOpen && <span>Start Practice</span>}
