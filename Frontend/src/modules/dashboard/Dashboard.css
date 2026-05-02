@@ -5,6 +5,52 @@
 	--accent-deep: #2b9bff;
 }
 
+.dashboard-shell {
+	--dashboard-bg: #000000;
+	--dashboard-text: #ffffff;
+	--dashboard-muted: rgba(255, 255, 255, 0.65);
+	--dashboard-muted-strong: rgba(255, 255, 255, 0.45);
+	--dashboard-border: rgba(255, 255, 255, 0.08);
+	--dashboard-panel: rgba(255, 255, 255, 0.05);
+	--dashboard-panel-soft: rgba(255, 255, 255, 0.02);
+	--dashboard-hover: rgba(255, 255, 255, 0.05);
+	--dashboard-accent: #61b6ff;
+	--dashboard-accent-deep: #2b9bff;
+	background: var(--dashboard-bg);
+	color: var(--dashboard-text);
+}
+
+.dashboard-shell[data-dashboard-theme='light'] {
+	--dashboard-bg: #f8fafc;
+	--dashboard-text: #0f172a;
+	--dashboard-muted: #64748b;
+	--dashboard-muted-strong: #475569;
+	--dashboard-border: #dbe3ee;
+	--dashboard-panel: #ffffff;
+	--dashboard-panel-soft: #ffffff;
+	--dashboard-hover: rgba(37, 99, 235, 0.06);
+	--dashboard-accent: #2563eb;
+	--dashboard-accent-deep: #1d4ed8;
+}
+
+.dashboard-surface {
+	background: var(--dashboard-panel);
+	border: 1px solid var(--dashboard-border);
+}
+
+.dashboard-surface-soft {
+	background: var(--dashboard-panel-soft);
+	border: 1px solid var(--dashboard-border);
+}
+
+.dashboard-text-primary {
+	color: var(--dashboard-text);
+}
+
+.dashboard-text-secondary {
+	color: var(--dashboard-muted);
+}
+
 /* Sidebar vertical divider */
 .sidebar-wrapper::after {
 	content: "";
@@ -25,31 +71,42 @@
 	align-items: center;
 	gap: 12px;
 	padding: 12px 14px;
-	color: rgb(107, 114, 128);
+	color: var(--dashboard-muted);
 	border-radius: 9999px;
 	text-decoration: none;
 	transition: all 160ms;
 }
 
 .sidebar-nav-item:hover {
-	background-color: rgba(255, 255, 255, 0.05);
-	color: var(--accent);
+	background-color: var(--dashboard-hover);
+	color: var(--dashboard-accent);
 }
 
 .sidebar-nav-item.active {
 	background: linear-gradient(90deg, rgba(97, 182, 255, 0.1), rgba(43, 155, 255, 0.05));
-	color: var(--accent);
+	color: var(--dashboard-accent);
 	padding: 12px 10px 12px 16px;
+}
+
+.sidebar-nav-item-collapsed {
+	width: 48px !important;
+	height: 48px !important;
+	justify-content: center !important;
+	padding: 0 !important;
+}
+
+.sidebar-nav-item-collapsed.active {
+	padding: 0 !important;
 }
 
 /* Task cards */
 .task-card {
-	border-color: rgb(55, 65, 81);
-	background-color: rgba(255, 255, 255, 0.02);
+	border-color: var(--dashboard-border);
+	background-color: var(--dashboard-panel-soft);
 }
 
 .task-card.todo {
-	border-color: rgb(55, 65, 81);
+	border-color: var(--dashboard-border);
 }
 
 .task-card.completed {
@@ -58,7 +115,7 @@
 }
 
 .task-card:hover {
-	background-color: rgba(255, 255, 255, 0.05);
+	background-color: var(--dashboard-hover);
 }
 
 /* Responsive */

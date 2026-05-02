@@ -2,8 +2,17 @@ import React from 'react'
 import './Topbar.css'
 import { BellRing, Zap } from 'lucide-react'
 
-export default function Topbar({ user = { name: 'Arjun', avatar: null }, streak = 5, progress = 40, sidebarOpen = true }) {
+export default function Topbar({
+  user = { name: 'Arjun', avatar: null },
+  streak = 5,
+  progress = 40,
+  sidebarOpen = true,
+  theme = 'dark',
+  onThemeToggle = () => {},
+}) {
   const shiftClass = sidebarOpen ? 'shift-open' : 'shift-closed'
+  const themeLabel = theme === 'dark' ? 'Light Mode' : 'Dark Mode'
+
   return (
     <div className={`topbar ${shiftClass}`}>
       <div className="topbar-inner">
@@ -13,6 +22,10 @@ export default function Topbar({ user = { name: 'Arjun', avatar: null }, streak 
             <div className="greeting-sub">Stay focused, you're doing great today.</div>
           </div>
         </div>
+
+        <button className="theme-toggle-btn" onClick={onThemeToggle} type="button" aria-label="Toggle dashboard theme">
+          {themeLabel}
+        </button>
 
         <div className="topbar-center">
           <div className="streak">
@@ -29,8 +42,8 @@ export default function Topbar({ user = { name: 'Arjun', avatar: null }, streak 
         </div>
 
         <div className="topbar-right">
-          <button className="icon-btn" aria-label="notifications"><BellRing /></button>
-          <button className="icon-btn" aria-label="quick-actions"><Zap /></button>
+          <button className="icon-btn" aria-label="notifications" type="button"><BellRing /></button>
+          <button className="icon-btn" aria-label="quick-actions" type="button"><Zap /></button>
           <div className="avatar">
             {user.avatar ? <img src={user.avatar} alt="avatar" /> : <div className="avatar-fallback">AB</div>}
           </div>
