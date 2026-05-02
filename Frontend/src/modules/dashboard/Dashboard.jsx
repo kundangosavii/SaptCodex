@@ -52,14 +52,16 @@ export default function Dashboard() {
 
 	return (
 		<div
-			className={`dashboard-shell ${isDark ? 'dashboard-theme-dark' : 'dashboard-theme-light'} flex flex-col min-h-screen`}
+			className={`dashboard-shell ${isDark ? 'dashboard-theme-dark' : 'dashboard-theme-light'} flex flex-col min-h-screen overflow-x-hidden`}
 			data-dashboard-theme={theme}
 		>
 			<Topbar sidebarOpen={sidebarOpen} theme={theme} onThemeToggle={toggleTheme} />
 
-			<div className="flex gap-6 items-stretch flex-1 p-5 transition-[padding-left] duration-220">
+			<div
+				className={`flex gap-6 items-stretch flex-1 min-w-0 overflow-x-hidden transition-[padding-left] duration-220 ${sidebarOpen ? 'pl-65 pr-5 py-5' : 'pl-26 pr-5 py-5'}`}
+			>
 				{/* Sidebar */}
-				<aside className={`sidebar-wrapper ${sidebarOpen ? 'w-60' : 'w-20'} transition-all duration-220`}>
+				<aside className="sidebar-wrapper flex-none transition-all duration-220">
 					<div
 						className={`fixed left-5 top-2 rounded-xl flex flex-col z-600 border backdrop-blur-sm ${isDark ? 'bg-black/70 border-white/10' : 'bg-white/90 border-slate-200 shadow-lg'}`}
 						style={{ height: 'calc(100vh - 16px)', width: sidebarOpen ? '240px' : '84px', transition: 'all 220ms ease' }}
@@ -113,7 +115,7 @@ export default function Dashboard() {
 				</aside>
 
 				{/* Main Content */}
-				<main className="flex-1 min-h-[calc(100vh-40px)] overflow-auto p-6">
+				<main className="flex-1 min-w-0 min-h-[calc(100vh-40px)] overflow-y-auto overflow-x-hidden p-0">
 					<div className="grid grid-cols-[1fr_320px] gap-5">
 						{/* Left Column */}
 						<div>
