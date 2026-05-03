@@ -119,10 +119,10 @@ export default function Dashboard() {
 						{/* Left Column */}
 						<div>
 							<section>
-								<h3 className="text-xs font-semibold uppercase tracking-widest text-accent m-0 mb-2 opacity-90">
+								<h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-600 m-0 mb-2 opacity-100 dark:text-slate-400">
 									FOCUS SESSION
 								</h3>
-								<h1 className="text-4xl font-bold m-0 mb-6 -tracking-tight text-slate-900 dark:text-white">
+								<h1 className="text-4xl font-extrabold m-0 mb-6 -tracking-tight text-slate-900 dark:text-white">
 									Today's Roadmap
 								</h1>
 								<div className="space-y-3">
@@ -137,24 +137,24 @@ export default function Dashboard() {
 											<div className="flex-1">
 												<div className="flex gap-2 mb-2">
 													{task.difficulty && (
-														<span className="rounded px-2 py-1 text-xs font-medium bg-blue-200 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300">
+														<span className="rounded px-2 py-1 text-xs font-semibold bg-blue-100 text-blue-900 dark:bg-blue-500/20 dark:text-blue-300">
 															{task.difficulty}
 														</span>
 													)}
 													{task.topic && (
-														<span className="rounded px-2 py-1 text-xs font-medium bg-purple-100 text-purple-700 dark:bg-purple-500/20 dark:text-purple-300">
+														<span className="rounded px-2 py-1 text-xs font-semibold bg-purple-100 text-purple-900 dark:bg-purple-500/20 dark:text-purple-300">
 															{task.topic}
 														</span>
 													)}
 												</div>
-												<h4 className="mb-1 font-semibold text-black dark:text-white">{task.title}</h4>
-												<p className="text-sm text-slate-600 dark:text-gray-400">{task.description}</p>
+												<h4 className="mb-1 text-lg font-bold tracking-tight text-slate-900 dark:text-white">{task.title}</h4>
+												<p className="text-sm font-medium leading-6 text-slate-700 dark:text-gray-400">{task.description}</p>
 											</div>
 											<button 
 												className={`whitespace-nowrap rounded-lg px-4 py-2 text-sm font-medium transition-all ${
 													task.status === 'completed'
-														? 'bg-green-100 text-green-700 dark:bg-green-500/20 dark:text-green-300'
-														: 'bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-accent/20 dark:text-accent dark:hover:bg-accent/30'
+														? 'bg-green-100 text-green-900 dark:bg-green-500/20 dark:text-green-300'
+														: 'bg-blue-100 text-blue-900 hover:bg-blue-200 dark:bg-accent/20 dark:text-accent dark:hover:bg-accent/30'
 												}`}
 											>
 												{task.action}
@@ -173,9 +173,9 @@ export default function Dashboard() {
 									<div className="text-xl text-red-600 dark:text-red-500"><CircleAlert /></div>
 									<h4 className="text-sm font-semibold uppercase tracking-wide text-red-600 dark:text-red-500">URGENT ALERT</h4>
 								</div>
-								<p className="mb-2 text-sm text-slate-700 dark:text-gray-300">You are falling behind your goal.</p>
-								<p className="mb-4 text-xs text-slate-500 dark:text-gray-500">Complete 2 more problems this week to stay on track for the FAANG interviews.</p>
-								<a href="#" className="text-accent text-sm font-medium hover:underline">Adjust My Plan →</a>
+									<p className="mb-2 text-sm font-medium text-slate-700 dark:text-gray-300">You are falling behind your goal.</p>
+									<p className="mb-4 text-xs font-medium leading-5 text-slate-600 dark:text-gray-500">Complete 2 more problems this week to stay on track for the FAANG interviews.</p>
+									<a href="#" className="text-sm font-semibold text-blue-700 hover:underline dark:text-accent">Adjust My Plan →</a>
 							</section>
 
 							{/* Insights Section */}
@@ -184,22 +184,22 @@ export default function Dashboard() {
 								<div className="grid grid-cols-2 gap-3">
 									<div className="rounded-lg border border-slate-200 bg-white p-3 text-center shadow-sm dark:border-white/10 dark:bg-white/5 dark:shadow-none">
 										<div className="text-2xl mb-1"><CircleCheckBig /></div>
-										<div className="text-lg font-bold text-slate-900 dark:text-white">24</div>
-										<div className="text-xs text-slate-500 dark:text-gray-500">Tasks Done</div>
+										<div className="text-lg font-extrabold text-slate-900 dark:text-white">24</div>
+										<div className="text-xs font-medium text-slate-600 dark:text-gray-500">Tasks Done</div>
 									</div>
 									<div className="rounded-lg border border-slate-200 bg-white p-3 text-center shadow-sm dark:border-white/10 dark:bg-white/5 dark:shadow-none">
 										<div className="text-2xl mb-1"><Flame /></div>
-										<div className="text-lg font-bold text-slate-900 dark:text-white">92%</div>
-										<div className="text-xs text-slate-500 dark:text-gray-500">Consistency</div>
+										<div className="text-lg font-extrabold text-slate-900 dark:text-white">92%</div>
+										<div className="text-xs font-medium text-slate-600 dark:text-gray-500">Consistency</div>
 									</div>
 								</div>
 							</section>
 
 							{/* Premium Section */}
 							<section className="rounded-lg border-4 border-slate-200 bg-white p-4 shadow-sm dark:border-accent/30 dark:bg-linear-to-br dark:from-accent/20 dark:to-accent-deep/20 dark:shadow-none">
-								<h4 className="mb-2 font-semibold text-slate-900 dark:text-white">Master System Design with<br/>SabtCodeX Pro</h4>
-								<p className="mb-4 text-xs text-slate-600 dark:text-gray-400">Unlock 52+ case studies from Uber, Netflix, and Amazon on scaling systems.</p>
-								<button className="w-full rounded-lg bg-accent py-2 text-sm font-bold text-black transition-colors hover:bg-accent/90">
+								<h4 className="mb-2 text-[15px] font-bold leading-6 tracking-tight text-slate-900 dark:text-white">Master System Design with<br/>SabtCodeX Pro</h4>
+								<p className="mb-4 text-xs font-medium leading-5 text-slate-600 dark:text-gray-400">Unlock 52+ case studies from Uber, Netflix, and Amazon on scaling systems.</p>
+								<button className="w-full rounded-lg bg-accent py-2 text-sm font-bold text-slate-950 transition-colors hover:bg-accent/90">
 									Upgrade Now
 								</button>
 							</section>
