@@ -199,7 +199,7 @@ export default function Dashboard() {
 							<section className={`rounded-lg p-4 border-4 ${isDark ? 'bg-linear-to-br from-accent/20 to-accent-deep/20 border-accent/30' : 'bg-white border-slate-200 shadow-sm'}`}>
 								<h4 className={`font-semibold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>Master System Design with<br/>SabtCodeX Pro</h4>
 								<p className={`text-xs mb-4 ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>Unlock 52+ case studies from Uber, Netflix, and Amazon on scaling systems.</p>
-								<button className="w-full bg-accent text-black font-bold py-2 rounded-lg hover:bg-accent/90 transition-colors text-sm">
+								<button className={`w-full bg-accent ${isDark ? 'text-white' : 'text-slate-900'} font-bold py-2 rounded-lg hover:bg-accent/90 transition-colors text-sm`}>
 									Upgrade Now
 								</button>
 							</section>
