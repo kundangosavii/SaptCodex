@@ -6,6 +6,7 @@ import App from './app/App.jsx'
 import Signin from './modules/auth/Signin.jsx'
 import Signup from './modules/auth/Signup.jsx'
 import Dashboard from './modules/dashboard/Dashboard.jsx'
+import ProtectedRoute from './modules/auth/ProtectedRoute.jsx'
 
 
 createRoot(document.getElementById('root')).render(
@@ -15,7 +16,11 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<App />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        } />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
