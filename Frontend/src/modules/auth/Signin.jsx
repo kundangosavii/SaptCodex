@@ -1,8 +1,13 @@
 import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './Auth.css'
 import { signin } from '../../api/auth'
+
+
 function Signin() {
+
+	const navigate = useNavigate()
+
 	const [form, setform] = useState({
 		email : '',
 		password : '',
@@ -24,6 +29,8 @@ function Signin() {
 			localStorage.setItem('token', res.data.token); 
 
 			console.log('Signin successful:', res.data);
+
+			navigate('/dashboard');
 			
 		} catch (error) {
 			console.error('Signin failed:', error.response ? error.response.data : error.message);

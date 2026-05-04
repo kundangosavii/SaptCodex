@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './Auth.css'
 import { signup } from '../../api/auth'
+
 
 const onboardingPillars = [
 	{
@@ -15,6 +16,9 @@ const onboardingPillars = [
 ]
 
 function Signup() {
+
+	const navigate = useNavigate()
+
 	const [form, setform] = useState({
 		fullname: '',
 		email: '',
@@ -36,6 +40,7 @@ function Signup() {
 			const response = await signup(form)
 			console.log('Signup successful:', response.data)
 			// Redirect to signin or dashboard
+			navigate('/dashboard')
 		} catch (error) {
 			console.error('Signup failed:', error)
 			// Show error message to user
