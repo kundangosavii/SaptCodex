@@ -52,7 +52,7 @@ function Signup() {
 
 			<section className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8 p-6" aria-label="Signup panel">
 				{/* Left brand panel */}
-				<aside className="rounded-lg p-8 bg-gradient-to-br from-indigo-900 via-purple-900 to-neutral-800">
+				<aside className="rounded-lg p-8 neutral-800">
 					<p className="text-sm text-indigo-200 uppercase tracking-wider">Execution Studio</p>
 					<h1 className="mt-3 text-3xl md:text-4xl font-extrabold leading-tight">
 						Create your <span className="text-indigo-300">SaptCodeX workspace</span>
