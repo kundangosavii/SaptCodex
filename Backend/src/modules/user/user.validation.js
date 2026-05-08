@@ -1,4 +1,4 @@
-import { AppError } from '../../errors/AppError.js';
+import AppError from '../../errors/AppError.js';
 
 const OnboardValidation = (req, res, next) => {
     const { goal, level, placementDate} = req.body;
@@ -18,4 +18,10 @@ const OnboardValidation = (req, res, next) => {
     if (goal === 'Placement' && !placementDate) {
         throw new AppError('Placement date is required for placement goal', 400);
     }
+
+    next();
+}
+
+export {
+    OnboardValidation
 }

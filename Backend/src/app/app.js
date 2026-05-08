@@ -19,7 +19,10 @@ app.get('/', (req, res) => {
 });
 
 import authRoutes from '../modules/auth/auth.routes.js';
+import userRoutes from '../modules/user/user.routes.js';
 
 app.use('/api/v1/auth', authRoutes);
+
+app.use('/api/v1/user', userRoutes);
 
 export default app;
