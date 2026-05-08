@@ -5,7 +5,7 @@ import {
 
 const OnboardController = async (req, res) => {
     const { goal, level, placementDate } = req.body;
-    const userId = req.user.loggedInUser._id;
+    const userId = req.user._id;
 
     const data = { goal, level, placementDate, userId};
 
