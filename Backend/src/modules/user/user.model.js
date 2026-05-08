@@ -1,4 +1,3 @@
-// write basic user model with mongoose
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -8,19 +7,45 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+
     email: {
         type: String,
         required: true,
         unique: true,
     },
+
     password: {
         type: String,
         required: true,
     },
+
+    isOnborded: {
+        type: Boolean,
+        default: false,
+    },
+
+    onboarding: {
+        goal : {
+            type: String,
+            enum : ['Placement', 'Gate(DA)'],
+        },
+
+        level : {
+            type: String,
+            enum : ['Beginner', 'Intermediate', 'Advanced'],
+        },
+
+        placementDate : {
+            type: Date,
+        }
+    },
+
     refreshToken: {
         type: String,
     }
 }, { timestamps: true });
+
+
 
 userSchema.pre('save', async function () {
     if (!this.isModified('password')) {
