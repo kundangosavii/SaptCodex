@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Dashboard.css'
 import Topbar from './Topbar.jsx'
+import Onboarding from './Onboarding.jsx'
 
 import { LayoutDashboard, CircleDot, BookOpenText, Settings, Rocket, CircleAlert, CircleCheckBig, Flame } from 'lucide-react'
 
@@ -21,6 +22,12 @@ const XIcon = () => (
 
 export default function Dashboard() {
 	const [sidebarOpen, setSidebarOpen] = useState(true)
+	const [isOnboarded, setIsOnboarded] = useState(() => {
+		if (typeof window === 'undefined') {
+			return false
+		}
+		return JSON.parse(window.localStorage.getItem('isOnboarded') || 'false')
+	})
 	const [theme, setTheme] = useState(() => {
 		if (typeof window === 'undefined') {
 			return 'dark'
@@ -35,6 +42,14 @@ export default function Dashboard() {
 		document.documentElement.classList.toggle('dark', isDark)
 		window.localStorage.setItem('dashboard-theme', theme)
 	}, [isDark, theme])
+
+	useEffect(() => {
+		window.localStorage.setItem('isOnboarded', JSON.stringify(isOnboarded))
+	}, [isOnboarded])
+
+	const handleOnboardingComplete = () => {
+		setIsOnboarded(true)
+	}
 
 	const toggleTheme = () => {
 		setTheme((currentTheme) => (currentTheme === 'dark' ? 'light' : 'dark'))
@@ -54,13 +69,17 @@ export default function Dashboard() {
 		<div
 			className="dashboard-shell flex min-h-screen flex-col overflow-x-hidden"
 		>
-			<Topbar sidebarOpen={sidebarOpen} theme={theme} onThemeToggle={toggleTheme} />
+			{!isOnboarded ? (
+				<Onboarding onComplete={handleOnboardingComplete} theme={theme} />
+			) : (
+				<>
+					<Topbar sidebarOpen={sidebarOpen} theme={theme} onThemeToggle={toggleTheme} />
 
-			<div
-				className={`flex gap-6 items-stretch flex-1 min-w-0 overflow-x-hidden transition-[padding-left] duration-220 ${sidebarOpen ? 'pl-65 pr-5 py-5' : 'pl-26 pr-5 py-5'}`}
-			>
-				{/* Sidebar */}
-				<aside className="sidebar-wrapper flex-none transition-all duration-220">
+					<div
+						className={`flex gap-6 items-stretch flex-1 min-w-0 overflow-x-hidden transition-[padding-left] duration-220 ${sidebarOpen ? 'pl-65 pr-5 py-5' : 'pl-26 pr-5 py-5'}`}
+					>
+						{/* Sidebar */}
+						<aside className="sidebar-wrapper flex-none transition-all duration-220">
 					<div
 						className={`fixed left-5 top-2 rounded-xl flex flex-col z-600 border backdrop-blur-sm ${isDark ? 'bg-black/70 border-white/10' : 'bg-white/90 border-slate-200 shadow-lg'}`}
 						style={{ height: 'calc(100vh - 16px)', width: sidebarOpen ? '240px' : '84px', transition: 'all 220ms ease' }}
@@ -105,7 +124,7 @@ export default function Dashboard() {
 
 						{/* Bottom Button */}
 						<div className="mt-auto pt-4 mb-6 m-4">
-							<button className="bg-blue-600 w-full flex gap-1 items-center justify-center p-2.5 rounded-lg from-accent to-accent-deep font-semibold text-sm border-none cursor-pointer shadow-lg hover:shadow-xl transition-shadow">
+							<button className="bg-gradient from-blue-600 to-blue-700 w-full flex gap-1 items-center justify-center p-2.5 rounded-lg font-semibold text-sm border-none cursor-pointer shadow-lg hover:shadow-xl transition-shadow text-white">
 								<span className="text-sm"><Rocket /></span>
 								{sidebarOpen && <span>Start Practice</span>}
 							</button>
@@ -129,10 +148,10 @@ export default function Dashboard() {
 									{tasks.map((task) => (
 										<article 
 											key={task.id} 
-											className={`task-card ${task.status} flex gap-4 p-4 rounded-lg border transition-all ${isDark ? 'text-white' : 'text-slate-900'}`}
+										className={`task-card ${task.status} flex gap-4 p-4 rounded-lg border ${isDark ? 'bg-white/5 border-white/10' : 'bg-slate-50 border-slate-200'} transition-all ${isDark ? 'text-white' : 'text-slate-900'}`}
 										>
 											<div className="flex items-start pt-1">
-												<input type="checkbox" className="cursor-pointer" />
+													<input type="checkbox" className={`cursor-pointer appearance-none w-5 h-5 rounded border-2 ${isDark ? 'bg-gray-800 border-gray-600 checked:bg-blue-600 checked:border-blue-600' : 'bg-white border-slate-300 checked:bg-blue-600 checked:border-blue-600'} transition-colors`} />
 											</div>
 											<div className="flex-1">
 												<div className="flex gap-2 mb-2">
@@ -166,9 +185,9 @@ export default function Dashboard() {
 						</div>
 
 						{/* Right Column */}
-						<aside>
+						<aside className={`space-y-6 ${isDark ? '' : ''}`}>
 							{/* Alert Section */}
-							<section className={`rounded-lg p-4 mb-6 border ${isDark ? 'bg-red-600/40 border-white/10' : 'bg-red-50 border-red-200'}`}>
+									<section className={`rounded-lg p-4 mb-6 border-2 ${isDark ? 'bg-red-600/40 border-red-500/30' : 'bg-red-50 border-red-200'}`}>
 								<div className="flex items-center gap-3 mb-3">
 									<div className={`text-xl ${isDark ? 'text-red-500' : 'text-red-600'}`}><CircleAlert /></div>
 									<h4 className={`font-semibold text-sm uppercase tracking-wide ${isDark ? 'text-red-500' : 'text-red-600'}`}>URGENT ALERT</h4>
@@ -179,15 +198,15 @@ export default function Dashboard() {
 							</section>
 
 							{/* Insights Section */}
-							<section className="mb-6">
-								<h4 className={`text-xs font-semibold uppercase tracking-widest mb-3 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>INSIGHTS</h4>
-								<div className="grid grid-cols-2 gap-3">
-									<div className={`rounded-lg p-3 text-center ${isDark ? 'bg-white/5 border border-white/10' : 'bg-white border border-slate-200 shadow-sm'}`}>
+									<section className={`mb-6 rounded-lg p-4 border-2 ${isDark ? 'border-white/10 bg-white/5' : 'border-slate-200 bg-slate-50'}`}>
+										<h4 className={`text-xs font-semibold uppercase tracking-widest mb-3 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>INSIGHTS</h4>
+										<div className="grid grid-cols-2 gap-3">
+											<div className={`rounded-lg p-3 text-center ${isDark ? 'bg-white/5 border-2 border-white/10' : 'bg-white border-2 border-slate-200 shadow-sm'}`}>
 										<div className="text-2xl mb-1"><CircleCheckBig /></div>
 										<div className={`font-bold text-lg ${isDark ? 'text-white' : 'text-slate-900'}`}>24</div>
 										<div className={`text-xs ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>Tasks Done</div>
 									</div>
-									<div className={`rounded-lg p-3 text-center ${isDark ? 'bg-white/5 border border-white/10' : 'bg-white border border-slate-200 shadow-sm'}`}>
+									<div className={`rounded-lg p-3 text-center ${isDark ? 'bg-white/5 border-2 border-white/10' : 'bg-white border-2 border-slate-200 shadow-sm'}`}>
 										<div className="text-2xl mb-1"><Flame /></div>
 										<div className={`font-bold text-lg ${isDark ? 'text-white' : 'text-slate-900'}`}>92%</div>
 										<div className={`text-xs ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>Consistency</div>
@@ -196,10 +215,10 @@ export default function Dashboard() {
 							</section>
 
 							{/* Premium Section */}
-							<section className={`rounded-lg p-4 border-4 ${isDark ? 'bg-linear-to-br from-accent/20 to-accent-deep/20 border-accent/30' : 'bg-white border-slate-200 shadow-sm'}`}>
+							<section className={`rounded-lg p-4 border-4 ${isDark ? 'bg-gradient from-accent/20 to-accent-deep/20 border-accent/30' : 'bg-slate-50 border-slate-300'}`}>
 								<h4 className={`font-semibold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>Master System Design with<br/>SabtCodeX Pro</h4>
 								<p className={`text-xs mb-4 ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>Unlock 52+ case studies from Uber, Netflix, and Amazon on scaling systems.</p>
-								<button className={`w-full bg-accent ${isDark ? 'text-white' : 'text-slate-900'} font-bold py-2 rounded-lg hover:bg-accent/90 transition-colors text-sm`}>
+								<button className={`w-full font-bold py-2 px-4 rounded-lg transition-colors text-sm ${isDark ? 'bg-accent text-white hover:bg-accent/90' : 'bg-blue-600 text-white hover:bg-blue-700'}`}>
 									Upgrade Now
 								</button>
 							</section>
@@ -207,7 +226,8 @@ export default function Dashboard() {
 					</div>
 				</main>
 			</div>
-		</div>
+			</>
+			)}
+	</div>
 	)
 }
-
