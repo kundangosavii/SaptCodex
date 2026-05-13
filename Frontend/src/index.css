@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Manrope:wght@500;600;700&family=JetBrains+Mono:wght@500;700&family=Playfair+Display:wght@600;700&display=swap');
 @import "tailwindcss";
+@tailwind utilities;
 
 :root {
 	--font-brand: 'Space Grotesk', sans-serif;
@@ -26,9 +27,6 @@
 
 html,
 body,
-#root {
-	background: #000;
-}
 
 body {
 	font-family: var(--font-nav);

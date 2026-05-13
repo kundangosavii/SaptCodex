@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Dashboard.css'
 import Topbar from './Topbar.jsx'
 import Onboarding from './Onboarding.jsx'
 
 import { LayoutDashboard, CircleDot, BookOpenText, Settings, Rocket, CircleAlert, CircleCheckBig, Flame } from 'lucide-react'
+import { useTheme } from '../../context/ThemeContext'
 
 const MenuIcon = () => (
 	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -28,20 +29,10 @@ export default function Dashboard() {
 		}
 		return JSON.parse(window.localStorage.getItem('isOnboarded') || 'false')
 	})
-	const [theme, setTheme] = useState(() => {
-		if (typeof window === 'undefined') {
-			return 'dark'
-		}
 
-		return window.localStorage.getItem('dashboard-theme') || 'dark'
-	})
+	const { theme, toggleTheme } = useTheme()
 
 	const isDark = theme === 'dark'
-
-	useEffect(() => {
-		document.documentElement.classList.toggle('dark', isDark)
-		window.localStorage.setItem('dashboard-theme', theme)
-	}, [isDark, theme])
 
 	useEffect(() => {
 		window.localStorage.setItem('isOnboarded', JSON.stringify(isOnboarded))
@@ -51,9 +42,7 @@ export default function Dashboard() {
 		setIsOnboarded(true)
 	}
 
-	const toggleTheme = () => {
-		setTheme((currentTheme) => (currentTheme === 'dark' ? 'light' : 'dark'))
-	}
+	// toggleTheme provided by ThemeContext
 
 	const collapsedNavItemStyle = sidebarOpen
 		? undefined

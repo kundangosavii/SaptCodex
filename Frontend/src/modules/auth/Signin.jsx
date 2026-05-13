@@ -1,27 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { signin } from '../../api/auth'
+import { useTheme } from '../../context/ThemeContext'
 
 function Signin() {
 	const navigate = useNavigate()
-	const [isDark, setIsDark] = useState(() => {
-		const savedTheme = localStorage.getItem('theme')
-
-		if (savedTheme === 'dark') return true
-		if (savedTheme === 'light') return false
-
-		return window.matchMedia('(prefers-color-scheme: dark)').matches
-	})
-
 	const [form, setform] = useState({
 		email: '',
 		password: '',
 	})
-
-	useEffect(() => {
-		localStorage.setItem('theme', isDark ? 'dark' : 'light')
-		document.documentElement.classList.toggle('dark', isDark)
-	}, [isDark])
 
 	const handlechange = (e) => {
 		setform({
@@ -42,12 +29,11 @@ function Signin() {
 		}
 	}
 
-	const toggleTheme = () => {
-		setIsDark((current) => !current)
-	}
+	const { theme, toggleTheme } = useTheme()
+	const isDark = theme === 'dark'
 
 	return (
-		<main className={`${isDark ? 'dark' : ''} min-h-screen bg-slate-100 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-50`}>
+		<main className={`min-h-screen bg-slate-100 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-50`}>
 			<section className="relative isolate overflow-hidden px-4 py-6 sm:px-6 lg:px-8 lg:py-10">
 				<div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(59,130,246,0.16),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(16,185,129,0.14),transparent_28%)] dark:bg-[radial-gradient(circle_at_top_left,rgba(14,165,233,0.18),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(34,197,94,0.12),transparent_25%)]" />
 
