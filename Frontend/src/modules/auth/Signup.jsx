@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { signup } from '../../api/auth'
 import { useTheme } from '../../context/ThemeContext'
+import { Sun, Moon } from 'lucide-react'
 
 
 const onboardingPillars = [
@@ -74,12 +75,16 @@ function Signup() {
 
 				{/* Right form panel */}
 				<article className="bg-neutral-50 dark:bg-neutral-800/60 p-6 rounded-lg shadow-lg">
-					<div className='flex items-center justify-between rounded-lg px-5 py-3'>
-						<h1 className='text-neutral-900 dark:text-white text-3xl underline'>Signup</h1>
-						<button onClick={toggleTheme} className="p-2 border border-neutral-300 dark:border-neutral-700 rounded bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800">
-      						{theme === "light" ? "🌙 Dark" : "☀️ Light"}
-							
-    					</button>
+					<div className='flex items-center justify-between gap-4'>
+						<div>
+							<p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">Secure access</p>
+							<h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-950 dark:text-white">Signup</h2>
+						</div>
+						<span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300">
+								<button onClick={toggleTheme} className='mt-1'>
+      								{theme === "light" ? <Moon size={18} /> : <Sun  size={18}/>}
+    							</button>
+						</span>
 					</div>
 
 					<form className="mt-6 space-y-4" onSubmit={handleSubmit}>
