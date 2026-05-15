@@ -36,11 +36,14 @@ function Navbar() {
         </ul>
 
         <div className="hidden items-center gap-6 md:flex">
-          <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300">
-            <button onClick={toggleTheme} className="mt-1" type="button" aria-label="Toggle theme">
-              {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
-            </button>
-          </span>
+          <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+              className="inline-flex items-center rounded-full border h-10 border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"
+          >
+            {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+          </button>
           <a
             href="/signin"
             className="font-nav text-sm font-semibold text-slate-600 transition-colors hover:text-slate-950 dark:text-slate-300 dark:hover:text-white"
