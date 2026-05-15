@@ -3,10 +3,10 @@ import { Moon, Sun } from 'lucide-react'
 import { useTheme } from '../../context/ThemeContext' 
 
 const navItems = [
-  { label: 'Solution', href: '#solution' },
-  { label: 'Features', href: '#features' },
-  { label: 'How It Works', href: '#how-it-works' },
-  { label: 'Testimonials', href: '#testimonials' },
+  { label: 'Solution', href: '#remedy' },
+  { label: 'Features', href: '#capabilities' },
+  { label: 'How It Works', href: '#process' },
+  { label: 'Testimonials', href: '#social-proof' },
 ]
 
 function Navbar() {
@@ -42,7 +42,7 @@ function Navbar() {
             </button>
           </span>
           <a
-            href="#signin"
+            href="/signin"
             className="font-nav text-sm font-semibold text-slate-600 transition-colors hover:text-slate-950 dark:text-slate-300 dark:hover:text-white"
           >
             Sign In
