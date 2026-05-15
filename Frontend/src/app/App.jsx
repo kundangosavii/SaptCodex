@@ -2,6 +2,8 @@ import './App.css'
 import Navbar from '../shared/components/Navbar.jsx'
 import Footer from '../shared/components/Footer.jsx'
 import heroImage from '../assets/hero.png'
+import { useTheme } from '../context/ThemeContext.jsx'
+
 
 const struggleCards = [
   {
