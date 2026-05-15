@@ -19,9 +19,20 @@
 	background: linear-gradient(to right, #000 0%, rgba(0, 0, 0, 0) 100%);
 }
 
+.testimonial-marquee-light::before {
+	left: 0;
+	background: linear-gradient(to right, #fff 0%, rgba(255, 255, 255, 0) 100%);
+}
+
 .testimonial-marquee::after {
 	right: 0;
-	background: linear-gradient(to left, #000 0%, rgba(0, 0, 0, 0) 100%);
+	background: linear-gradient(to left, #000000 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+
+.testimonial-marquee-light::after {
+	right: 0;
+	background: linear-gradient(to left, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
 }
 
 .testimonial-track {

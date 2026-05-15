@@ -169,22 +169,24 @@ const testimonials = [
 const scrollingTestimonials = [...testimonials, ...testimonials]
 
 function App() {
+  const { theme } = useTheme()
+
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-black px-6 pb-16 pt-28 text-white md:px-10">
+      <main className="min-h-screen bg-white text-slate-900 px-6 pb-16 pt-28 md:px-10 dark:bg-black dark:text-white">
         <section className="mx-auto grid w-full max-w-7xl gap-10 py-10 lg:grid-cols-[1.05fr_1fr] lg:items-center">
           <div>
-            <span className="inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-cyan-300">
+            <span className="inline-flex rounded-full border border-slate-300 bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-slate-700 dark:border-cyan-400/20 dark:bg-cyan-400/10 dark:text-cyan-300">
               The Architectural Void
             </span>
 
-            <h1 className="mt-6 max-w-xl font-nav text-5xl font-bold leading-[0.98] tracking-tight text-slate-100 sm:text-6xl lg:text-7xl">
+            <h1 className="mt-6 max-w-xl font-nav text-5xl font-bold leading-[0.98] tracking-tight text-slate-900 sm:text-6xl lg:text-7xl dark:text-slate-100">
               Stop Planning.
-              <span className="block text-cyan-400">Start Executing.</span>
+              <span className="block text-cyan-600 dark:text-cyan-400">Start Executing.</span>
             </h1>
 
-            <p className="mt-6 max-w-xl text-xl leading-relaxed text-slate-400">
+            <p className="mt-6 max-w-xl text-xl leading-relaxed text-slate-600 dark:text-slate-400">
               Get daily tasks, a structured roadmap, and become placement-ready without the noise
               of endless resources.
             </p>
@@ -192,20 +194,20 @@ function App() {
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <a
                 href="#get-started"
-                className="rounded-xl bg-cyan-300 px-8 py-4 text-lg font-semibold text-slate-900 transition hover:bg-cyan-200"
+                className="rounded-xl bg-cyan-600 px-8 py-4 text-lg font-semibold text-white transition hover:bg-cyan-700 dark:bg-cyan-300 dark:text-slate-900 dark:hover:bg-cyan-200"
               >
                 Get Started
               </a>
               <a
                 href="#roadmap"
-                className="rounded-xl border border-slate-700 bg-slate-800/60 px-8 py-4 text-lg font-semibold text-slate-300 transition hover:border-slate-500 hover:text-slate-100"
+                className="rounded-xl border border-slate-300 bg-slate-100 px-8 py-4 text-lg font-semibold text-slate-900 transition hover:border-slate-400 hover:bg-slate-200 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-slate-100"
               >
                 View Roadmap
               </a>
             </div>
           </div>
 
-          <div className="relative overflow-hidden rounded-2xl border border-cyan-400/20 bg-slate-900/40 p-2 shadow-[0_0_30px_rgba(14,116,255,0.18)]">
+          <div className="relative overflow-hidden rounded-2xl border border-slate-300 bg-slate-50 p-2 shadow-md dark:border-cyan-400/20 dark:bg-slate-900/40 dark:shadow-[0_0_30px_rgba(14,116,255,0.18)]">
             <img
               src={heroImage}
               alt="Dashboard preview"
@@ -215,10 +217,10 @@ function App() {
         </section>
 
         <section className="mx-auto w-full max-w-7xl py-12" id="struggle">
-          <p className="font-nav text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
+          <p className="font-nav text-xs font-semibold uppercase tracking-[0.12em] text-slate-600 dark:text-slate-500">
             The Struggle
           </p>
-          <h2 className="mt-3 font-nav text-4xl font-bold tracking-tight text-slate-100 sm:text-5xl">
+          <h2 className="mt-3 font-nav text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl dark:text-slate-100">
             Why most candidates fail to prepare.
           </h2>
 
@@ -226,13 +228,13 @@ function App() {
             {struggleCards.map((card) => (
               <article
                 key={card.title}
-                className="rounded-2xl border border-white/10 bg-white/5 p-7 backdrop-blur-sm"
+                className="rounded-2xl border border-slate-200 bg-slate-50 p-7 backdrop-blur-sm dark:border-white/10 dark:bg-white/5"
               >
-                <div className="text-slate-300">{card.icon}</div>
-                <h3 className="mt-7 font-nav text-3xl font-semibold tracking-tight text-slate-100">
+                <div className="text-slate-600 dark:text-slate-300">{card.icon}</div>
+                <h3 className="mt-7 font-nav text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
                   {card.title}
                 </h3>
-                <p className="mt-4 max-w-sm text-xl leading-relaxed text-slate-400">
+                <p className="mt-4 max-w-sm text-xl leading-relaxed text-slate-600 dark:text-slate-400">
                   {card.description}
                 </p>
               </article>
@@ -248,32 +250,32 @@ function App() {
             {remedyCards.map((card) => (
               <article
                 key={card.title}
-                className="rounded-2xl border border-white/10 bg-black p-5 sm:p-6"
+                className="rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:p-6 dark:border-white/10 dark:bg-black"
               >
-                <div className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-slate-300">
+                <div className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-300 bg-slate-100 text-slate-600 dark:border-white/10 dark:bg-transparent dark:text-slate-300">
                   {card.icon}
                 </div>
-                <h3 className="mt-4 font-nav text-2xl font-semibold tracking-tight text-slate-100">
+                <h3 className="mt-4 font-nav text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
                   {card.title}
                 </h3>
-                <p className="mt-2 max-w-md text-lg leading-relaxed text-slate-400">{card.description}</p>
+                <p className="mt-2 max-w-md text-lg leading-relaxed text-slate-600 dark:text-slate-400">{card.description}</p>
               </article>
             ))}
           </div>
 
           <div>
-            <p className="font-nav text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
+            <p className="font-nav text-xs font-semibold uppercase tracking-[0.12em] text-slate-600 dark:text-slate-500">
               The Remedy
             </p>
-            <h2 className="mt-3 max-w-lg font-nav text-5xl font-bold leading-[1.03] tracking-tight text-slate-100 sm:text-6xl">
+            <h2 className="mt-3 max-w-lg font-nav text-5xl font-bold leading-[1.03] tracking-tight text-slate-900 sm:text-6xl dark:text-slate-100">
               Your Personal Placement Architect.
             </h2>
-            <p className="mt-5 max-w-lg text-xl leading-relaxed text-slate-400">
+            <p className="mt-5 max-w-lg text-xl leading-relaxed text-slate-600 dark:text-slate-400">
               We do not just provide content; we provide a workflow. SaptCodeX filters out the
               noise and keeps your preparation focused on actions that move you forward.
             </p>
 
-            <div className="mt-8 overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-3">
+            <div className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 p-3 dark:border-white/10 dark:bg-white/5">
               <img
                 src={heroImage}
                 alt="Progress dashboard"
@@ -284,44 +286,44 @@ function App() {
         </section>
 
         <section className="mx-auto w-full max-w-7xl py-14" id="capabilities">
-          <p className="text-center font-nav text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
+          <p className="text-center font-nav text-xs font-semibold uppercase tracking-[0.12em] text-slate-600 dark:text-slate-500">
             Capabilities
           </p>
-          <h2 className="mt-3 text-center font-nav text-4xl font-bold tracking-tight text-slate-100 sm:text-5xl">
+          <h2 className="mt-3 text-center font-nav text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl dark:text-slate-100">
             Built for high-performance learning.
           </h2>
 
           <div className="mt-10 grid gap-4 lg:grid-cols-3">
-            <article className="rounded-2xl border border-white/10 bg-white/5 p-6 lg:col-span-2">
-              <h3 className="font-nav text-3xl font-semibold tracking-tight text-slate-100">
+            <article className="rounded-2xl border border-slate-200 bg-slate-50 p-6 lg:col-span-2 dark:border-white/10 dark:bg-white/5">
+              <h3 className="font-nav text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
                 Daily Tasks Engine
               </h3>
-              <p className="mt-3 max-w-2xl text-lg leading-relaxed text-slate-400">
+              <p className="mt-3 max-w-2xl text-lg leading-relaxed text-slate-600 dark:text-slate-400">
                 Every morning at 6 AM, your dashboard updates with 3 key problems. One easy, one
                 medium, one hard. Curated specifically for your progress level.
               </p>
 
-              <div className="mt-8 rounded-xl border border-white/10 bg-black/60 p-3">
-                <div className="mb-2 flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-slate-500">
+              <div className="mt-8 rounded-xl border border-slate-200 bg-slate-100 p-3 dark:border-white/10 dark:bg-black/60">
+                <div className="mb-2 flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-500">
                   <span>Today&apos;s Focus: Graphs</span>
                   <span>2/3 Done</span>
                 </div>
-                <div className="h-2 overflow-hidden rounded-full bg-slate-800">
-                  <div className="h-full w-2/3 rounded-full bg-cyan-300" />
+                <div className="h-2 overflow-hidden rounded-full bg-slate-300 dark:bg-slate-800">
+                  <div className="h-full w-2/3 rounded-full bg-cyan-600 dark:bg-cyan-300" />
                 </div>
               </div>
             </article>
 
-            <article className="flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-6 text-center">
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/15 text-slate-200">
+            <article className="flex flex-col items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 p-6 text-center dark:border-white/10 dark:bg-white/5">
+              <div className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-300 text-slate-600 dark:border-white/15 dark:text-slate-200">
                 <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
                   <path d="M12 4l3 4h5l-4 4 1.5 6L12 15l-5.5 3L8 12 4 8h5z" stroke="currentColor" strokeWidth="1.6" />
                 </svg>
               </div>
-              <h3 className="mt-4 font-nav text-3xl font-semibold tracking-tight text-slate-100">
+              <h3 className="mt-4 font-nav text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
                 Streak System
               </h3>
-              <p className="mt-3 max-w-xs text-lg leading-relaxed text-slate-400">
+              <p className="mt-3 max-w-xs text-lg leading-relaxed text-slate-600 dark:text-slate-400">
                 Gamified consistency to ensure you never miss a day. Build habits that last.
               </p>
             </article>
@@ -329,29 +331,29 @@ function App() {
             {capabilityCards.map((card) => (
               <article
                 key={card.title}
-                className="rounded-2xl border border-white/10 bg-white/5 p-6"
+                className="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-white/10 dark:bg-white/5"
               >
-                <div className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-slate-300">
+                <div className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-300 bg-slate-100 text-slate-600 dark:border-white/10 dark:bg-transparent dark:text-slate-300">
                   {card.icon}
                 </div>
-                <h3 className="mt-4 font-nav text-2xl font-semibold tracking-tight text-slate-100">
+                <h3 className="mt-4 font-nav text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
                   {card.title}
                 </h3>
-                <p className="mt-2 text-lg leading-relaxed text-slate-400">{card.description}</p>
+                <p className="mt-2 text-lg leading-relaxed text-slate-600 dark:text-slate-400">{card.description}</p>
               </article>
             ))}
 
-            <article className="rounded-2xl border border-white/10 bg-white/5 p-6">
-              <div className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-slate-300">
+            <article className="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-white/10 dark:bg-white/5">
+              <div className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-300 bg-slate-100 text-slate-600 dark:border-white/10 dark:bg-transparent dark:text-slate-300">
                 <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
                   <path d="M7 7h10v10H7z" stroke="currentColor" strokeWidth="1.8" />
                   <path d="M10 10h4v4h-4z" stroke="currentColor" strokeWidth="1.8" />
                 </svg>
               </div>
-              <h3 className="mt-4 font-nav text-2xl font-semibold tracking-tight text-slate-100">
+              <h3 className="mt-4 font-nav text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
                 Smart Dashboard
               </h3>
-              <p className="mt-2 text-lg leading-relaxed text-slate-400">
+              <p className="mt-2 text-lg leading-relaxed text-slate-600 dark:text-slate-400">
                 One place to view tasks, streaks, and outcomes without switching context.
               </p>
             </article>
@@ -359,10 +361,10 @@ function App() {
         </section>
 
         <section className="mx-auto w-full max-w-7xl py-14" id="process">
-          <p className="text-center font-nav text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
+          <p className="text-center font-nav text-xs font-semibold uppercase tracking-[0.12em] text-slate-600 dark:text-slate-500">
             The Process
           </p>
-          <h2 className="mt-3 text-center font-nav text-4xl font-bold tracking-tight text-slate-100 sm:text-5xl">
+          <h2 className="mt-3 text-center font-nav text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl dark:text-slate-100">
             Three steps to placement.
           </h2>
 
@@ -370,16 +372,16 @@ function App() {
             {processSteps.map((step, index) => (
               <article key={step.number} className="relative text-center">
                 {index < processSteps.length - 1 ? (
-                  <span className="absolute left-[68%] top-5 hidden h-px w-[64%] bg-white/10 md:block" />
+                  <span className="absolute left-[68%] top-5 hidden h-px w-[64%] bg-slate-300 md:block dark:bg-white/10" />
                 ) : null}
 
-                <div className="mx-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 text-lg font-semibold text-cyan-300">
+                <div className="mx-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-cyan-600 bg-cyan-100 text-lg font-semibold text-cyan-700 dark:border-cyan-400/30 dark:bg-cyan-400/10 dark:text-cyan-300">
                   {step.number}
                 </div>
-                <h3 className="mt-5 font-nav text-2xl font-semibold tracking-tight text-slate-100">
+                <h3 className="mt-5 font-nav text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
                   {step.title}
                 </h3>
-                <p className="mx-auto mt-3 max-w-sm text-lg leading-relaxed text-slate-400">
+                <p className="mx-auto mt-3 max-w-sm text-lg leading-relaxed text-slate-600 dark:text-slate-400">
                   {step.description}
                 </p>
               </article>
@@ -388,27 +390,27 @@ function App() {
         </section>
 
         <section className="mx-auto w-full max-w-7xl py-14" id="social-proof">
-          <p className="font-nav text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
+          <p className="font-nav text-xs font-semibold uppercase tracking-[0.12em] text-slate-600 dark:text-slate-500">
             Social Proof
           </p>
-          <h2 className="mt-3 max-w-2xl font-nav text-4xl font-bold tracking-tight text-slate-100 sm:text-5xl">
+          <h2 className="mt-3 max-w-2xl font-nav text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl dark:text-slate-100">
             Used by the next generation of software architects.
           </h2>
 
-          <div className="testimonial-marquee mt-10">
+          <div className={`testimonial-marquee mt-10 ${theme === 'light' ? 'testimonial-marquee-light' : ''}`}>
             <div className="testimonial-track">
               {scrollingTestimonials.map((item, index) => (
                 <article
                   key={`${item.name}-${index}`}
-                  className="w-80 shrink-0 rounded-2xl border border-white/10 bg-white/5 p-6"
+                  className="w-80 shrink-0 rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-white/10 dark:bg-white/5"
                 >
-                <p className="text-lg leading-relaxed text-slate-300">&ldquo;{item.quote}&rdquo;</p>
+                <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">&ldquo;{item.quote}&rdquo;</p>
 
                 <div className="mt-7 flex items-center gap-3">
                   <span className={`h-7 w-7 rounded-full ${item.avatarClass}`} />
                   <div>
-                    <p className="font-nav text-base font-semibold text-slate-100">{item.name}</p>
-                    <p className="text-sm text-slate-500">{item.role}</p>
+                    <p className="font-nav text-base font-semibold text-slate-900 dark:text-slate-100">{item.name}</p>
+                    <p className="text-sm text-slate-600 dark:text-slate-500">{item.role}</p>
                   </div>
                 </div>
                 </article>
@@ -419,18 +421,18 @@ function App() {
 
         <section className="mx-auto w-full max-w-7xl py-20" id="join-now">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-nav text-5xl font-bold leading-tight tracking-tight text-slate-100 sm:text-6xl">
+            <h2 className="font-nav text-5xl font-bold leading-tight tracking-tight text-slate-900 sm:text-6xl dark:text-slate-100">
               Start your placement
               <span className="block">journey today.</span>
             </h2>
 
-            <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-slate-400">
+            <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-slate-600 dark:text-slate-400">
               Join 10,000+ students who stopped planning and started executing their dreams.
             </p>
 
             <a
               href="#get-started"
-              className="mt-10 inline-flex items-center rounded-2xl border border-white/20 bg-transparent px-10 py-4 font-nav text-xl font-semibold text-slate-100 transition-colors hover:border-white/40 hover:bg-white/10"
+              className="mt-10 inline-flex items-center rounded-2xl border border-slate-300 bg-slate-950 px-10 py-4 font-nav text-xl font-semibold text-white transition-colors hover:border-slate-400 hover:bg-slate-900 dark:border-white/20 dark:bg-transparent dark:text-slate-100 dark:hover:border-white/40 dark:hover:bg-white/10"
             >
               Join Now
             </a>
