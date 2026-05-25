@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './Dashboard.css'
 import Topbar from './Topbar.jsx'
 import Onboarding from './Onboarding.jsx'
+import Sidebar from './components/Sidebar.jsx'
 
 import { LayoutDashboard, CircleDot, BookOpenText, Settings, Rocket, CircleAlert, CircleCheckBig, Flame } from 'lucide-react'
 import { useTheme } from '../../context/ThemeContext'
@@ -31,7 +32,6 @@ export default function Dashboard() {
 	})
 
 	const { theme, toggleTheme } = useTheme()
-
 	const isDark = theme === 'dark'
 
 	useEffect(() => {
@@ -69,57 +69,8 @@ export default function Dashboard() {
 					>
 						{/* Sidebar */}
 						<aside className="sidebar-wrapper flex-none transition-all duration-220">
-					<div
-						className={`fixed left-5 top-2 rounded-xl flex flex-col z-600 border backdrop-blur-sm ${isDark ? 'bg-black/70 border-white/10' : 'bg-white/90 border-slate-200 shadow-lg'}`}
-						style={{ height: 'calc(100vh - 16px)', width: sidebarOpen ? '240px' : '84px', transition: 'all 220ms ease' }}
-					>
-						{/* Sidebar Content */}
-						<div className={`flex items-center gap-2 mb-4 mr-2 ${sidebarOpen ? 'justify-between' : 'justify-center ml-4'}`}>
-							<div className="flex items-center gap-3 mt-4">
-								{sidebarOpen && (
-									<div>
-										<div className="font-black text-lg text-accent ml-2">SaptCodeX</div>
-										<div className={`text-xs mt-0.5 ml-2 ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>EngineeringPlacement</div>
-									</div>
-								)}
-							</div>
-							<button 
-								className={`bg-transparent cursor-pointer p-1.5 rounded-lg transition-colors mt-4 -ml-3 ${isDark ? 'border border-white/10 text-gray-400 hover:border-white/20' : 'border border-slate-200 text-slate-500 hover:border-slate-300'}`}
-								onClick={() => setSidebarOpen(!sidebarOpen)}
-							>
-								{sidebarOpen ? <XIcon /> : <MenuIcon />}
-							</button>
-						</div>
-
-						{/* Navigation */}
-						<nav className={`flex flex-col gap-2.5 mt-1.5 ${sidebarOpen ? '' : 'items-center'}`}>
-							<a href="#" style={collapsedNavItemStyle} className={`sidebar-nav-item active ${sidebarOpen ? '' : 'sidebar-nav-item-collapsed'}`}>
-								<span className="w-7 h-7 inline-flex items-center justify-center text-base"><LayoutDashboard /></span>
-								{sidebarOpen && <span className={`font-semibold ${isDark ? 'text-white' : 'text-slate-800'}`}>Dashboard</span>}
-							</a>
-							<a href="#" style={collapsedNavItemStyle} className={`sidebar-nav-item ${sidebarOpen ? '' : 'sidebar-nav-item-collapsed'}`}>
-								<span className="w-7 h-7 inline-flex items-center justify-center text-base"><CircleDot /></span>
-								{sidebarOpen && <span className={`font-semibold ${isDark ? 'text-white' : 'text-slate-800'}`}>Progress</span>}
-							</a>
-							<a href="#" style={collapsedNavItemStyle} className={`sidebar-nav-item ${sidebarOpen ? '' : 'sidebar-nav-item-collapsed'}`}>
-								<span className="w-7 h-7 inline-flex items-center justify-center text-base"><BookOpenText /></span>
-								{sidebarOpen && <span className={`font-semibold ${isDark ? 'text-white' : 'text-slate-800'}`}>Roadmap</span>}
-							</a>
-							<a href="#" style={collapsedNavItemStyle} className={`sidebar-nav-item ${sidebarOpen ? '' : 'sidebar-nav-item-collapsed'}`}>
-								<span className="w-7 h-7 inline-flex items-center justify-center text-base"><Settings /></span>
-								{sidebarOpen && <span className={`font-semibold ${isDark ? 'text-white' : 'text-slate-800'}`}>Settings</span>}
-							</a>
-						</nav>
-
-						{/* Bottom Button */}
-						<div className="mt-auto pt-4 mb-6 m-4">
-							<button className="bg-gradient from-blue-600 to-blue-700 w-full flex gap-1 items-center justify-center p-2.5 rounded-lg font-semibold text-sm border-none cursor-pointer shadow-lg hover:shadow-xl transition-shadow text-white">
-								<span className="text-sm"><Rocket /></span>
-								{sidebarOpen && <span>Start Practice</span>}
-							</button>
-						</div>
-					</div>
-				</aside>
+							<Sidebar/>
+						</aside>
 
 				{/* Main Content */}
 				<main className="flex-1 min-w-0 min-h-[calc(100vh-40px)] overflow-y-auto overflow-x-hidden p-0">

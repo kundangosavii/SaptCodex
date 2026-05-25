@@ -1,3 +1,6 @@
+import { useState } from 'react'
+import { Rocket, LayoutDashboard, CircleDot, BookOpenText, Settings, XIcon, MenuIcon } from 'lucide-react'
+
 export default function Sidebar() {
     const [sidebarOpen, setSidebarOpen] = useState(true)
 
