@@ -10,15 +10,15 @@ export default function Topbar({
   onThemeToggle = () => {},
 }) {
   const shiftClass = sidebarOpen
-    ? 'ml-[276px] w-[calc(100%-300px)]'
-    : 'ml-[109px] w-[calc(100%-134px)]'
+    ? 'ml-3 w-[calc(100%-24px)] md:ml-[276px] md:w-[calc(100%-300px)]'
+    : 'ml-3 w-[calc(100%-24px)] md:ml-[109px] md:w-[calc(100%-134px)]'
   const themeLabel = theme === 'dark' ? 'Light Mode' : 'Dark Mode'
 
   return (
     <div
       className={`mx-6 mt-4 rounded-xl border border-(--dashboard-border) bg-(--dashboard-panel) px-6 py-4 text-(--dashboard-text) transition-[margin-left,width] duration-200 max-[900px]:mx-3 max-[900px]:w-[calc(100%-24px)] ${shiftClass}`}
     >
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="min-w-0 flex-1">
           <div className="space-y-1">
             <div className="text-lg font-bold text-(--dashboard-text)">Good Morning, {user.name}</div>
@@ -27,7 +27,7 @@ export default function Topbar({
         </div>
 
         <button
-          className="inline-flex items-center justify-center rounded-full border border-(--dashboard-border) bg-(--dashboard-panel-soft) px-3 py-2 text-sm font-semibold whitespace-nowrap text-(--dashboard-text) transition-colors hover:bg-(--dashboard-hover)"
+          className="inline-flex items-center justify-center rounded-full border border-(--dashboard-border) bg-(--dashboard-panel-soft) px-3 py-2 text-sm font-semibold whitespace-nowrap text-(--dashboard-text) transition-colors hover:bg-(--dashboard-hover) self-start md:self-auto"
           onClick={onThemeToggle}
           type="button"
           aria-label="Toggle dashboard theme"
@@ -35,13 +35,13 @@ export default function Topbar({
           {themeLabel}
         </button>
 
-        <div className="flex items-center gap-4 max-[900px]:flex-wrap">
+        <div className="flex flex-wrap items-center gap-3 md:gap-4">
           <div className="inline-flex items-center gap-2 rounded-full border border-(--dashboard-border) bg-(--dashboard-panel-soft) px-3 py-1.5">
             <span className="text-sm">🔥</span>
             <span className="text-sm font-semibold text-(--dashboard-text)">{streak} Day Streak</span>
           </div>
 
-          <div className="w-56 max-[900px]:hidden">
+          <div className="hidden w-56 lg:block">
             <div className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-(--dashboard-muted)">
               Placement Goal
             </div>
@@ -54,7 +54,7 @@ export default function Topbar({
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3 self-start md:self-auto">
           <button
             className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-(--dashboard-text) transition-colors hover:bg-(--dashboard-hover)"
             aria-label="notifications"
