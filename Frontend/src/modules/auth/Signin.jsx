@@ -23,7 +23,7 @@ function Signin() {
 
 		try {
 			const res = await signin(form)
-			localStorage.setItem('token', res.data.token)
+			localStorage.setItem('token', res.data.token || res.data.accessToken || res.data.user?.accessToken)
 			navigate('/dashboard')
 		} catch (error) {
 			console.error('Signin failed:', error.response ? error.response.data : error.message)
