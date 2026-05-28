@@ -5,7 +5,7 @@ import {
     getUserById, 
     getUserByIdForTokenUpdate, 
     getUserByRefreshToken, 
-    clearRefreshToken 
+    clearRefreshToken,
 } from "./auth.repository.js";
 
 import AppError from "../../errors/AppError.js";
@@ -76,6 +76,7 @@ const LogoutService = async ({ refreshToken }) => {
 
     return true;
 }
+
 
 export {
     CreateUserService,
