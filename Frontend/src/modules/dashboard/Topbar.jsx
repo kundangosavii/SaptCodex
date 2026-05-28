@@ -2,9 +2,9 @@ import React from 'react'
 import { BellRing, Zap } from 'lucide-react'
 
 export default function Topbar({
-  user = { name: 'Arjun', avatar: null },
-  streak = 5,
-  progress = 40,
+  userData,
+  streak,
+  progress,
   sidebarOpen = true,
   theme = 'dark',
   onThemeToggle = () => {},
@@ -21,7 +21,7 @@ export default function Topbar({
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="min-w-0 flex-1">
           <div className="space-y-1">
-            <div className="text-lg font-bold text-(--dashboard-text)">Good Morning, {user.name}</div>
+            <div className="text-lg font-bold text-(--dashboard-text)">Good Morning, {userData?.fullname || userData?.name || 'User'}</div>
             <div className="text-sm text-(--dashboard-muted)">Stay focused, you're doing great today.</div>
           </div>
         </div>
@@ -70,10 +70,10 @@ export default function Topbar({
             <Zap className="h-4 w-4" />
           </button>
           <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-(--dashboard-panel-soft) text-(--dashboard-text)">
-            {user.avatar ? (
-              <img src={user.avatar} alt="avatar" className="h-full w-full object-cover" />
+            {userData?.avatar ? (
+              <img src={userData.avatar} alt="avatar" className="h-full w-full object-cover" />
             ) : (
-              <div className="text-sm font-bold">AB</div>
+              <div className="text-sm font-bold">{userData.fullname[0].toUpperCase()}</div>
             )}
           </div>
         </div>

@@ -60,7 +60,7 @@ export default function Dashboard() {
 				<Onboarding onComplete={handleOnboardingComplete} theme={theme} />
 			) : (
 				<>
-					<Topbar sidebarOpen={sidebarOpen} theme={theme} onThemeToggle={toggleTheme} />
+					<Topbar userData={user} sidebarOpen={sidebarOpen} theme={theme} onThemeToggle={toggleTheme} />
 
 					<div className="flex gap-6 items-stretch flex-1 min-w-0 overflow-x-hidden transition-[padding-left] duration-220 pl-65 pr-5 py-5">
 						<aside className="sidebar-wrapper flex-none transition-all duration-220">
@@ -70,16 +70,6 @@ export default function Dashboard() {
 						<main className="flex-1 min-w-0 min-h-[calc(100vh-40px)] overflow-y-auto overflow-x-hidden p-0">
 							<div className="grid grid-cols-[1fr_320px] gap-5">
 								<div>
-									{user && (
-										<div className="mb-5 rounded-lg border border-slate-200 bg-white/80 p-4 text-sm text-slate-700 shadow-sm dark:border-white/10 dark:bg-white/5 dark:text-slate-300">
-											<p className="font-semibold text-slate-900 dark:text-white">
-												Welcome back{user.fullname ? `, ${user.fullname}` : ''}
-											</p>
-											<p className="mt-1 text-xs uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
-												{user.email}
-											</p>
-										</div>
-									)}
 									<section>
 										<h3 className="text-xs font-semibold uppercase tracking-widest text-accent m-0 mb-2 opacity-90">
 											FOCUS SESSION
