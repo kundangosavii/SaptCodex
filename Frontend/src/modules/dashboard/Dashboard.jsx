@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Dashboard.css'
 import Topbar from './Topbar.jsx'
 import Onboarding from './Onboarding.jsx'
@@ -6,17 +6,35 @@ import Sidebar from './components/Sidebar.jsx'
 
 import { CircleAlert, CircleCheckBig, Flame } from 'lucide-react'
 import { useTheme } from '../../context/ThemeContext'
+import { getUser } from '../../api/user'
 
 export default function Dashboard() {
-	const [isOnboarded, setIsOnboarded] = useState(() => {
-		if (typeof window === 'undefined') {
-			return false
-		}
-		return JSON.parse(window.localStorage.getItem('isOnboarded') || 'false')
-	})
+	const [isOnboarded, setIsOnboarded] = useState(false)
+	const [user, setUser] = useState(null)
+	const [isLoading, setIsLoading] = useState(true)
 	const sidebarOpen = true
 
 	const { theme, toggleTheme } = useTheme()
+
+	useEffect(() => {
+		const fetchUser = async () => {
+			try {
+				const response = await getUser()
+				const userData = response.data?.result?.data || null
+
+				setUser(userData)
+				if (typeof userData?.isOnborded === 'boolean') {
+					setIsOnboarded(userData.isOnborded)
+				}
+			} catch (error) {
+				console.error('Failed to load user:', error.response ? error.response.data : error.message)
+			} finally {
+				setIsLoading(false)
+			}
+		}
+
+		fetchUser()
+	}, [])
 
 	useEffect(() => {
 		window.localStorage.setItem('isOnboarded', JSON.stringify(isOnboarded))
@@ -26,8 +44,6 @@ export default function Dashboard() {
 		setIsOnboarded(true)
 	}
 
-	// toggleTheme provided by ThemeContext
-
 	const tasks = [
 		{ id: 1, difficulty: 'Medium', title: 'Solve 3 Array Problems', description: 'Focus on Two Pointers and Sliding Window techniques.', status: 'todo', action: 'Start' },
 		{ id: 2, difficulty: 'Medium', topic: 'Topic: Architectures', title: 'Review System Design Basics', description: 'Consistency, Availability, and Partition Tolerance (CAP Theorem).', status: 'todo', action: 'Open Link' },
@@ -36,23 +52,34 @@ export default function Dashboard() {
 
 	return (
 		<div className="dashboard-shell flex min-h-screen flex-col overflow-x-hidden">
-			{!isOnboarded ? (
+			{isLoading ? (
+				<div className="flex min-h-screen items-center justify-center bg-slate-950 text-white">
+					<p className="text-sm uppercase tracking-[0.2em] text-slate-400">Loading dashboard</p>
+				</div>
+			) : !isOnboarded ? (
 				<Onboarding onComplete={handleOnboardingComplete} theme={theme} />
 			) : (
 				<>
 					<Topbar sidebarOpen={sidebarOpen} theme={theme} onThemeToggle={toggleTheme} />
 
 					<div className="flex gap-6 items-stretch flex-1 min-w-0 overflow-x-hidden transition-[padding-left] duration-220 pl-65 pr-5 py-5">
-						{/* Sidebar */}
 						<aside className="sidebar-wrapper flex-none transition-all duration-220">
 							<Sidebar />
 						</aside>
 
-						{/* Main Content */}
 						<main className="flex-1 min-w-0 min-h-[calc(100vh-40px)] overflow-y-auto overflow-x-hidden p-0">
 							<div className="grid grid-cols-[1fr_320px] gap-5">
-								{/* Left Column */}
 								<div>
+									{user && (
+										<div className="mb-5 rounded-lg border border-slate-200 bg-white/80 p-4 text-sm text-slate-700 shadow-sm dark:border-white/10 dark:bg-white/5 dark:text-slate-300">
+											<p className="font-semibold text-slate-900 dark:text-white">
+												Welcome back{user.fullname ? `, ${user.fullname}` : ''}
+											</p>
+											<p className="mt-1 text-xs uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+												{user.email}
+											</p>
+										</div>
+									)}
 									<section>
 										<h3 className="text-xs font-semibold uppercase tracking-widest text-accent m-0 mb-2 opacity-90">
 											FOCUS SESSION
@@ -100,9 +127,7 @@ export default function Dashboard() {
 									</section>
 								</div>
 
-								{/* Right Column */}
 								<aside className="space-y-6">
-									{/* Alert Section */}
 									<section className="rounded-lg p-4 mb-6 border-2 bg-red-50 border-red-200 dark:bg-red-600/40 dark:border-red-500/30">
 										<div className="flex items-center gap-3 mb-3">
 											<div className="text-xl text-red-600 dark:text-red-500"><CircleAlert /></div>
@@ -113,7 +138,6 @@ export default function Dashboard() {
 										<a href="#" className="text-accent text-sm font-medium hover:underline">Adjust My Plan →</a>
 									</section>
 
-									{/* Insights Section */}
 									<section className="mb-6 rounded-lg p-4 border-2 border-slate-200 bg-slate-50 dark:border-white/10 dark:bg-white/5">
 										<h4 className="text-xs font-semibold uppercase tracking-widest mb-3 text-slate-500 dark:text-gray-400">INSIGHTS</h4>
 										<div className="grid grid-cols-2 gap-3">
@@ -130,11 +154,10 @@ export default function Dashboard() {
 										</div>
 									</section>
 
-									{/* Premium Section */}
-									<section className="rounded-lg p-4 border-4 bg-slate-50 border-slate-300 dark:bg-linear-to-br dark:from-accent/20 dark:to-accent-deep/20 dark:border-accent/30">
-										<h4 className="font-semibold mb-2 text-slate-900 dark:text-white">Master System Design with<br />SabtCodeX Pro</h4>
-										<p className="text-xs mb-4 text-slate-600 dark:text-gray-400">Unlock 52+ case studies from Uber, Netflix, and Amazon on scaling systems.</p>
-										<button className="w-full font-bold py-2 px-4 rounded-lg transition-colors text-sm bg-blue-600 text-white hover:bg-blue-700 dark:bg-accent dark:hover:bg-accent/90">
+									<section className="rounded-lg p-4 border-4 bg-slate-50 border-slate-300 dark:bg-slate-950/80 dark:border-cyan-400/20 dark:shadow-[0_0_0_1px_rgba(34,211,238,0.12),0_18px_40px_rgba(0,0,0,0.35)]">
+										<h4 className="font-semibold mb-2 text-slate-900 dark:text-cyan-50">Master System Design with<br />SabtCodeX Pro</h4>
+										<p className="text-xs mb-4 text-slate-600 dark:text-slate-300">Unlock 52+ case studies from Uber, Netflix, and Amazon on scaling systems.</p>
+										<button className="w-full font-bold py-2 px-4 rounded-lg transition-colors text-sm bg-blue-600 text-white hover:bg-blue-700 dark:bg-cyan-500 dark:text-slate-950 dark:hover:bg-cyan-400">
 											Upgrade Now
 										</button>
 									</section>
