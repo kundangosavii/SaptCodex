@@ -1,7 +1,7 @@
 import { 
     CreateUserService, 
     LoginService, 
-    LogoutService 
+    LogoutService
 } from "./auth.service.js";
 
 const parseCookies = (cookieHeader = "") => {
@@ -53,6 +53,7 @@ const LoginController = async (req, res) => {
     .cookie('refreshToken', user.refreshToken, options )
     .json({
         message: 'Login successful',
+        token: user.accessToken,
         user: {
             loggedInUser: user.loggedInUser,
             accessToken: user.accessToken,
@@ -82,4 +83,4 @@ const LogoutController = async (req, res) => {
         });
 }
 
-export {SignupController, LoginController, LogoutController}
+export {SignupController, LoginController, LogoutController};
