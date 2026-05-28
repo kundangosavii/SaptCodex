@@ -1,5 +1,6 @@
 import {
-    OnboardService
+    OnboardService,
+    getUserService
 } from './user.service.js';
 
 
@@ -23,6 +24,22 @@ const OnboardController = async (req, res) => {
     });
 }
 
+const getUserController = async (req, res) => {
+    const userId = req.user._id;
+    const result = await getUserService(userId);
+    if(!result.success) {
+        return res.status(400).json({
+            success: false,
+            message: 'Internal server error',
+        });
+    }
+
+    res.status(200).json({
+        result
+    });
+}
+
 export {
-    OnboardController
+    OnboardController,
+    getUserController
 }

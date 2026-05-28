@@ -22,6 +22,21 @@ const OnboardUser = async (userData) => {
     }
 }
 
+const getUser = async (userId) => {
+    const user = await User.findById(userId).select('-password -refreshToken');
+    if (!user) {
+        return {
+            success: false,
+            message: 'User not found',
+        }
+    }
+    return {
+        success: true,
+        data: user,
+    }   
+}
+
 export {
     OnboardUser,
+    getUser
 }

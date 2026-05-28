@@ -1,5 +1,6 @@
 import {
-    OnboardUser
+    OnboardUser, 
+    getUser
 } from './user.repository.js';
 
 
@@ -10,6 +11,13 @@ const OnboardService = async (data) => {
     return result;
 }
 
+const getUserService = async (userId) => {
+    const result = await getUser(userId);
+    return result;
+}
+
+
 export {
     OnboardService,
+    getUserService
 }
