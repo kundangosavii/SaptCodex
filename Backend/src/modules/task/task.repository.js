@@ -6,3 +6,7 @@ const getLevelOfUser = (userId) => {
 
     return user;
 }
+
+export {
+    getLevelOfUser  
+}
