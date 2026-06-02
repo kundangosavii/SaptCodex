@@ -1,5 +1,5 @@
-import { levelService } from "./task.service.js";
-import parseTasks from "./task.parse.js";
+import { levelService } from "./task.services.js";
+import {parseTasks} from "./task.parse.js";
 
 
 const getTasksController = async (req, res) => {

@@ -20,9 +20,12 @@ app.get('/', (req, res) => {
 
 import authRoutes from '../modules/auth/auth.routes.js';
 import userRoutes from '../modules/user/user.routes.js';
+import taskRoutes from '../modules/task/task.routes.js';
 
 app.use('/api/v1/auth', authRoutes);
 
 app.use('/api/v1/user', userRoutes);
+app.use('/api/v1/task', taskRoutes);
+
 
 export default app;
