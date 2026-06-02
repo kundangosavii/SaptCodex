@@ -2,12 +2,12 @@
 id: dev_node_basics,
 track: development
 type: learning,
-level: beginner
-day: 1
-module: JavaScript
-difficulty: easy
-order: 1
-duration: 45
+level: beginner,
+day: 1,
+module: JavaScript,
+difficulty: easy,
+order: 1,
+duration: 45,
 dependsOn:[]
 ---
 Tasks:
@@ -24,14 +24,14 @@ Output:
 
 ## Task
 id: dev_express_api,
-track: development
+track: development,
 type: learning,
-level: medium
-day: 1
-module: JavaScript
-difficulty: easy
-order: 1
-duration: 45
+level: beginner,
+day: 1,
+module: JavaScript,
+difficulty: easy,
+order: 1,
+duration: 45,
 dependsOn:[dev_node_basics]
 ---
 

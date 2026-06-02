@@ -32,7 +32,7 @@ module: JavaScript
 difficulty: easy
 order: 1
 duration: 45
-dependsOn:[]
+dependsOn:[dsa_arrays_basics]
 ---
 Tasks:
 - Solve 2 problems:
