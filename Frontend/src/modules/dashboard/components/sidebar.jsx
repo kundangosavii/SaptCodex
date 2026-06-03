@@ -44,7 +44,7 @@ export default function Sidebar() {
 
                 {/* Bottom Button */}
                 <div className="mt-auto pt-4 mb-6 m-4">
-                    <button className="bg-gradient from-blue-600 to-blue-700 w-full flex gap-1 items-center justify-center p-2.5 rounded-lg font-semibold text-sm border-none cursor-pointer shadow-lg hover:shadow-xl transition-shadow text-white">
+                    <button className="bg-blue-500 w-full flex gap-1 items-center justify-center p-2.5 rounded-lg font-semibold text-sm border-none cursor-pointer shadow-lg hover:shadow-xl transition-shadow text-black">
                         <span className="text-sm"><Rocket /></span>
                         {sidebarOpen && <span>Start Practice</span>}
                     </button>
