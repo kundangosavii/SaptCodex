@@ -32,6 +32,9 @@ function parseList(text) {
         .map(line => line.replace(/^[-\d.\s]+/, ''));
 }
 
+function getcurrentDate() {
+    return new Date().toISOString().split("T")[0];
+}
 
 
 const getTasksController = async (req, res) => {
