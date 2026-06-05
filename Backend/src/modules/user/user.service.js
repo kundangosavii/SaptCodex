@@ -10,7 +10,9 @@ function getCurrentDate() {
 const OnboardService = async (data) => {
     const { goal, level, placementDate, userId } = data;
 
-    const result = await OnboardUser({ goal, level, placementDate, userId });
+    const currentDate = getCurrentDate();
+
+    const result = await OnboardUser({ goal, level, placementDate, currentDate, userId });
     return result;
 }
 
