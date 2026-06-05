@@ -1,7 +1,7 @@
 import User from './user.model.js';
 
 const OnboardUser = async (userData) => {
-    const { goal, level, placementDate, userId } = userData;
+    const { goal, level, placementDate, currentDate ,userId } = userData;
 
     const user = await User.findById(userId);
 
@@ -13,6 +13,12 @@ const OnboardUser = async (userData) => {
     }
 
     user.isOnborded = true;
+
+    user.goalstartDate = currentDate;
+
+    const goalDuration = new Date(placementDate).getMonth() - new Date(currentDate).getMonth();
+
+    user.goalDuration = goalDuration > 0 ? goalDuration : 0;
 
     await user.save();
 
