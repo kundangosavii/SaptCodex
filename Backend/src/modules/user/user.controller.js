@@ -4,6 +4,7 @@ import {
 } from './user.service.js';
 
 
+
 const OnboardController = async (req, res) => {
     const { goal, level, placementDate } = req.body;
     const userId = req.user._id;
