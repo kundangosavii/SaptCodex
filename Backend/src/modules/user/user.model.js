@@ -40,10 +40,18 @@ const userSchema = new mongoose.Schema({
         }
     },
 
-    goalstartDate: Date,
-    goalDuration: Number, // in months
+    goalstartDate: {
+        type: Date,
+    },
 
-    lastActiveDate: Date,
+    goalDuration: {
+        type: Number
+    },
+
+    lastActiveDate: {
+        type: Date,
+    },
+    
 
     refreshToken: {
         type: String,
