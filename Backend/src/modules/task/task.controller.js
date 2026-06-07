@@ -1,5 +1,6 @@
 import { levelService } from "./task.services.js";
 import { parseTasks } from "./task.parse.js";
+import user from "../user/user.model.js";
 
 
 function normalizeText(input) {
@@ -32,15 +33,34 @@ function parseList(text) {
         .map(line => line.replace(/^[-\d.\s]+/, ''));
 }
 
+function getCurrentDate(startDate) {
+    if (!startDate) {
+        return 1;
+    }
+
+    const now = new Date();
+    const start = new Date(startDate);
+
+    const diffTime = Math.abs(now - start);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays + 1;
+}
+
 
 const getTasksController = async (req, res) => {
     const userId = req.user._id;
 
     const level = await levelService(userId);
+    const currentUser = await user.findById(userId).select('goalstartDate');
 
     const md = await parseTasks(level);
 
-    const data = md.flatMap(task => {
+    const currentDate = getCurrentDate(currentUser?.goalstartDate);
+
+    const newData = md.filter(task => Number(task.day) === currentDate);
+
+
+    const data = newData.flatMap(task => {
         const normalized = normalizeText(task.title);
         const blocks = splitBlocks(normalized);
 
