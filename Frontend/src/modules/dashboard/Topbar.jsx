@@ -13,6 +13,8 @@ export default function Topbar({
     ? 'ml-3 w-[calc(100%-24px)] md:ml-[276px] md:w-[calc(100%-300px)]'
     : 'ml-3 w-[calc(100%-24px)] md:ml-[109px] md:w-[calc(100%-134px)]'
   const themeLabel = theme === 'dark' ? 'Light Mode' : 'Dark Mode'
+  const displayName = userData?.fullname || userData?.name || 'User'
+  const avatarInitial = displayName?.trim()?.charAt(0)?.toUpperCase() || 'U'
 
   return (
     <div
@@ -21,7 +23,7 @@ export default function Topbar({
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="min-w-0 flex-1">
           <div className="space-y-1">
-            <div className="text-lg font-bold text-(--dashboard-text)">Good Morning, {userData?.fullname || userData?.name || 'User'}</div>
+            <div className="text-lg font-bold text-(--dashboard-text)">Good Morning, {displayName}</div>
             <div className="text-sm text-(--dashboard-muted)">Stay focused, you're doing great today.</div>
           </div>
         </div>
@@ -73,7 +75,7 @@ export default function Topbar({
             {userData?.avatar ? (
               <img src={userData.avatar} alt="avatar" className="h-full w-full object-cover" />
             ) : (
-              <div className="text-sm font-bold">{userData.fullname[0].toUpperCase()}</div>
+              <div className="text-sm font-bold">{avatarInitial}</div>
             )}
           </div>
         </div>
