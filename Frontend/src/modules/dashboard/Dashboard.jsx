@@ -16,8 +16,7 @@ export default function Dashboard() {
 
 	const { theme, toggleTheme } = useTheme()
 
-	useEffect(() => {
-		const fetchUser = async () => {
+	const fetchUser = async () => {
 			try {
 				const response = await getUser()
 				const userData = response.data?.result?.data || null
@@ -31,8 +30,9 @@ export default function Dashboard() {
 			} finally {
 				setIsLoading(false)
 			}
-		}
+	}
 
+	useEffect(() => {
 		fetchUser()
 	}, [])
 
@@ -40,7 +40,8 @@ export default function Dashboard() {
 		window.localStorage.setItem('isOnboarded', JSON.stringify(isOnboarded))
 	}, [isOnboarded])
 
-	const handleOnboardingComplete = () => {
+	const handleOnboardingComplete = async () => {
+		await fetchUser()
 		setIsOnboarded(true)
 	}
 
@@ -57,7 +58,7 @@ export default function Dashboard() {
 					<p className="text-sm uppercase tracking-[0.2em] text-slate-400">Loading dashboard</p>
 				</div>
 			) : !isOnboarded ? (
-				<Onboarding onComplete={handleOnboardingComplete} theme={theme} />
+					<Onboarding onComplete={handleOnboardingComplete} theme={theme} />
 			) : (
 				<>
 					<Topbar userData={user} sidebarOpen={sidebarOpen} theme={theme} onThemeToggle={toggleTheme} />
