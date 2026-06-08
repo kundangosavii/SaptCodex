@@ -28,6 +28,10 @@ function Signup() {
 		password: '',
 		confirmPassword: '',
 		consent: false,
+		// Onboarding fields moved into signup form
+		goal: '',
+		level: '',
+		placementDate: '',
 	})
 
 	const handleChange = (e) => {
@@ -106,6 +110,31 @@ function Signup() {
 						<div>
 							<label htmlFor="signup-confirm" className="block text-sm font-medium text-neutral-700 dark:text-gray-200">Confirm password</label>
 							<input id="signup-confirm" name="confirmPassword" type="password" placeholder="Repeat password" autoComplete="new-password" onChange={handleChange} className="mt-1 block w-full bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white rounded-md px-3 py-2 placeholder-neutral-400 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+						</div>
+
+						{/* Onboarding fields - moved from separate Onboarding page */}
+						<div>
+							<label htmlFor="signup-goal" className="block text-sm font-medium text-neutral-700 dark:text-gray-200">Goal</label>
+							<select id="signup-goal" name="goal" value={form.goal} onChange={handleChange} className="mt-1 block w-full bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+								<option value="">Select your goal</option>
+								<option value="Placement">Placement</option>
+								<option value="Gate(DA)">Gate(DA)</option>
+							</select>
+						</div>
+
+						<div>
+							<label htmlFor="signup-level" className="block text-sm font-medium text-neutral-700 dark:text-gray-200">Level</label>
+							<select id="signup-level" name="level" value={form.level} onChange={handleChange} className="mt-1 block w-full bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+								<option value="">Select your level</option>
+								<option value="Beginner">Beginner</option>
+								<option value="Intermediate">Intermediate</option>
+								<option value="Advanced">Advanced</option>
+							</select>
+						</div>
+
+						<div>
+							<label htmlFor="signup-placement" className="block text-sm font-medium text-neutral-700 dark:text-gray-200">Placement date</label>
+							<input id="signup-placement" name="placementDate" type="date" value={form.placementDate} onChange={handleChange} className="mt-1 block w-full bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
 						</div>
 
 						<label className="flex items-center gap-3 text-sm text-neutral-700 dark:text-gray-200 mt-2">
