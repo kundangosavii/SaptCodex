@@ -1,7 +1,8 @@
 import User from "../user/user.model.js";
 
-const createUser = async ({ fullname, email, password }) => {
-    return await User.create({ fullname, email, password });
+const createUser = async ({ fullname, email, password, onboarding = {} }) => {
+    const isOnborded = Boolean(onboarding && (onboarding.goal || onboarding.level || onboarding.placementDate));
+    return await User.create({ fullname, email, password, onboarding, isOnborded });
 }
 
 const userWithEmail = async (email) => {

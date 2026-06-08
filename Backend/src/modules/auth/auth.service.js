@@ -12,8 +12,8 @@ import AppError from "../../errors/AppError.js";
 
 
 
-const CreateUserService = async ({ fullname, email, password }) => {
-    const user = await createUser({ fullname, email, password });
+const CreateUserService = async ({ fullname, email, password, onboarding = {} }) => {
+    const user = await createUser({ fullname, email, password, onboarding });
     return user;
 }
 

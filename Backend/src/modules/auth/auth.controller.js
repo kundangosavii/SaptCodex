@@ -17,9 +17,15 @@ const parseCookies = (cookieHeader = "") => {
 }
 
 const SignupController = async (req, res) => {
-    const {fullname, email, password } = req.body;
+    const { fullname, email, password, goal, level, placementDate } = req.body;
 
-    const user = await CreateUserService({ fullname, email, password });
+    const onboarding = {
+        goal: goal || undefined,
+        level: level || undefined,
+        placementDate: placementDate || undefined,
+    };
+
+    const user = await CreateUserService({ fullname, email, password, onboarding });
 
     return res.status(201).json({
         message: 'User created successfully',
