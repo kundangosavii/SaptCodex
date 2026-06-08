@@ -19,4 +19,8 @@ const getUser = () => {
   return API.get('/user/getuser');
 }
 
-export { getUser };
+const onboardUser = (data) => {
+  return API.post('/user/onboard', data);
+};
+
+export { getUser, onboardUser };
