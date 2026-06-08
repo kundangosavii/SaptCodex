@@ -10,6 +10,10 @@ import {
 
 import AppError from "../../errors/AppError.js";
 
+const getCurrentDate = () => {
+    return new Date().toISOString();
+}
+
 
 
 const CreateUserService = async ({ fullname, email, password, onboarding = {} }) => {
@@ -81,5 +85,7 @@ const LogoutService = async ({ refreshToken }) => {
 export {
     CreateUserService,
     LoginService,
-    LogoutService
+    LogoutService,
+    getCurrentDate
+    
 }

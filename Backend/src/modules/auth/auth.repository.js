@@ -1,8 +1,9 @@
 import User from "../user/user.model.js";
+import {getCurrentDate} from "../auth/auth.service.js";
 
 const createUser = async ({ fullname, email, password, onboarding = {} }) => {
     const isOnborded = Boolean(onboarding && (onboarding.goal || onboarding.level || onboarding.placementDate));
-    return await User.create({ fullname, email, password, onboarding, isOnborded });
+    return await User.create({ fullname, email, password, onboarding, isOnborded, goalstartDate: getCurrentDate(), lastActiveDate: getCurrentDate(), });
 }
 
 const userWithEmail = async (email) => {
