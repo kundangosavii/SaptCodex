@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Dashboard.css'
 import Topbar from './Topbar.jsx'
 import Sidebar from './components/Sidebar.jsx'
+import TaskCard from './components/TaskCard.jsx'
 
 import { CircleAlert, CircleCheckBig, Flame } from 'lucide-react'
 import { useTheme } from '../../context/ThemeContext'
@@ -45,9 +46,37 @@ export default function Dashboard() {
 	}
 
 	const tasks = [
-		{ id: 1, difficulty: 'Medium', title: 'Solve 3 Array Problems', description: 'Focus on Two Pointers and Sliding Window techniques.', status: 'todo', action: 'Start' },
-		{ id: 2, difficulty: 'Medium', topic: 'Topic: Architectures', title: 'Review System Design Basics', description: 'Consistency, Availability, and Partition Tolerance (CAP Theorem).', status: 'todo', action: 'Open Link' },
-		{ id: 3, difficulty: 'Advanced', title: 'SQL Performance Tuning', description: 'Master indexing and query optimization.', status: 'completed', action: 'Completed' },
+		{
+			id: 1,
+			difficulty: 'Medium',
+			title: 'Node.js Fundamentals',
+			tasks: ['Learn:', 'What is Node.js', 'Event loop (basic idea)', 'Execute:', 'Run a simple script using node'],
+			constraints: [],
+			output: ['Write 3 key points'],
+			status: 'todo',
+			action: 'Start',
+		},
+		{
+			id: 2,
+			difficulty: 'Medium',
+			topic: 'Topic: Architectures',
+			title: 'Review System Design Basics',
+			tasks: ['Focus on:', 'Consistency, Availability, and Partition Tolerance'],
+			constraints: ['Use CAP theorem as the guide'],
+			output: ['Summarize the trade-offs'],
+			status: 'todo',
+			action: 'Open Link',
+		},
+		{
+			id: 3,
+			difficulty: 'Advanced',
+			title: 'SQL Performance Tuning',
+			tasks: ['Learn:', 'Indexing patterns', 'Query optimization'],
+			constraints: ['Keep queries measurable'],
+			output: ['Write 3 tuning notes'],
+			status: 'completed',
+			action: 'Completed',
+		},
 	]
 
 	return (
@@ -88,39 +117,7 @@ export default function Dashboard() {
 										</h1>
 										<div className="space-y-3">
 											{tasks.map((task) => (
-												<article
-													key={task.id}
-													className={`task-card ${task.status} flex gap-4 p-4 rounded-lg border bg-slate-50 dark:bg-white/5 border-slate-200 dark:border-white/10 transition-all text-slate-900 dark:text-white`}
-												>
-													<div className="flex items-start pt-1">
-														<input type="checkbox" className="cursor-pointer appearance-none w-5 h-5 rounded border-2 bg-white border-slate-300 dark:bg-gray-800 dark:border-gray-600 checked:bg-blue-600 checked:border-blue-600 transition-colors" />
-													</div>
-													<div className="flex-1">
-														<div className="flex gap-2 mb-2">
-															{task.difficulty && (
-																<span className="px-2 py-1 text-xs font-medium rounded bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300">
-																	{task.difficulty}
-																</span>
-															)}
-															{task.topic && (
-																<span className="px-2 py-1 text-xs font-medium rounded bg-purple-100 text-purple-700 dark:bg-purple-500/20 dark:text-purple-300">
-																	{task.topic}
-																</span>
-															)}
-														</div>
-														<h4 className="font-semibold mb-1 text-slate-900 dark:text-white">{task.title}</h4>
-														<p className="text-sm text-slate-600 dark:text-gray-400">{task.description}</p>
-													</div>
-													<button
-														className={`px-4 py-2 rounded-lg font-medium text-sm whitespace-nowrap transition-all ${
-															task.status === 'completed'
-																? 'bg-green-100 text-green-700 dark:bg-green-500/20 dark:text-green-300'
-																: 'bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-accent/20 dark:text-accent dark:hover:bg-accent/30'
-														}`}
-													>
-														{task.action}
-													</button>
-												</article>
+												<TaskCard key={task.id} task={task} />
 											))}
 										</div>
 									</section>
