@@ -73,7 +73,7 @@ function Navbar() {
         </button>
 
         {mobileMenuOpen && (
-          <div className="absolute left-4 right-4 top-full mt-3 rounded-2xl border border-slate-200/70 bg-white/80 p-4 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-black/65 md:hidden">
+          <div className="absolute left-4 right-4 top-full mt-3 rounded-2xl border border-slate-200/80 bg-white/95 p-4 shadow-2xl backdrop-blur-xl dark:border-white/15 dark:bg-black md:hidden">
             <div className="flex flex-col gap-4">
               <ul className="flex flex-col gap-1">
                 {navItems.map((item) => (
@@ -81,7 +81,7 @@ function Navbar() {
                     <a
                       href={item.href}
                       onClick={closeMobileMenu}
-                      className="flex items-center rounded-xl px-3 py-3 font-nav text-sm font-semibold uppercase tracking-wide text-slate-700 transition-colors hover:bg-slate-100 hover:text-cyan-700 dark:text-slate-200 dark:hover:bg-white/8 dark:hover:text-cyan-300"
+                      className="flex items-center rounded-xl px-3 py-3 font-nav text-sm font-semibold uppercase tracking-wide text-slate-700 transition-colors hover:bg-slate-100 hover:text-cyan-700 dark:text-slate-200 dark:hover:bg-white/10 dark:hover:text-cyan-300"
                     >
                       {item.label}
                     </a>
@@ -89,7 +89,7 @@ function Navbar() {
                 ))}
               </ul>
 
-              <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 dark:border-white/10 dark:bg-white/5">
+              <div className="flex items-center justify-between rounded-xl border px-4 py-3">
                 <span className="font-nav text-sm font-semibold text-slate-700 dark:text-slate-200">Theme</span>
                 <button
                   type="button"
