@@ -4,6 +4,6 @@ import { verifyJWT } from '../../middleware/auth.middleware.js';
 
 const router = Router();
 
-router.post('/gettasks', verifyJWT, getTasksController);
+router.get('/gettasks', verifyJWT, getTasksController);
 
 export default router;
