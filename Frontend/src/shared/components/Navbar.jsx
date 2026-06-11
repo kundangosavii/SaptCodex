@@ -44,13 +44,13 @@ function Navbar() {
               type="button"
               onClick={toggleTheme}
               aria-label="Toggle theme"
-              className="inline-flex items-center rounded-full border h-10 border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"
+              className="inline-flex items-center rounded-full border h-10 border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-500 dark:border-white/15 dark:bg-black dark:text-slate-300"
           >
             {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
           </button>
           <a
             href="/signin"
-            className="font-nav text-sm font-semibold text-slate-600 transition-colors hover:text-slate-950 dark:text-slate-300 dark:hover:text-white"
+            className="font-action rounded-lg border border-slate-300 bg-slate-950 px-5 py-3 text-sm font-extrabold uppercase tracking-wide text-white transition-colors hover:border-slate-950 hover:bg-slate-800 dark:border-white/20 dark:bg-transparent dark:text-slate-100 dark:hover:border-white/40 dark:hover:bg-white/10"
           >
             Sign In
           </a>
@@ -58,7 +58,7 @@ function Navbar() {
             to="/signup"
             className="font-action rounded-lg border border-slate-300 bg-slate-950 px-5 py-3 text-sm font-extrabold uppercase tracking-wide text-white transition-colors hover:border-slate-950 hover:bg-slate-800 dark:border-white/20 dark:bg-transparent dark:text-slate-100 dark:hover:border-white/40 dark:hover:bg-white/10"
           >
-            Get Started
+            Sign Up
           </Link>
         </div>
 
@@ -89,12 +89,12 @@ function Navbar() {
                 ))}
               </ul>
 
-              <div className="flex items-center justify-between rounded-xl border px-4 py-3">
+              <div className="flex items-center justify-between rounded-xl border border-white/15 px-4 py-3">
                 <span className="font-nav text-sm font-semibold text-slate-700 dark:text-slate-200">Theme</span>
                 <button
                   type="button"
                   onClick={toggleTheme}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-white/15 dark:bg-black dark:text-slate-300"
                   aria-label="Toggle theme"
                 >
                   {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
