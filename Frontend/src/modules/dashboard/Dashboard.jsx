@@ -94,13 +94,13 @@ export default function Dashboard() {
 						</div>
 					)}
 
-					<div className={`flex gap-6 items-stretch flex-1 min-w-0 overflow-x-hidden transition-[padding-left] duration-220 ${mainPaddingClass} pr-5 py-5`}>
+					<div className={`flex gap-6 items-stretch flex-1 min-w-0 overflow-x-hidden transition-[padding-left] duration-220 ${mainPaddingClass} pr-3 md:pr-5 py-5`}>
 						<aside className="sidebar-wrapper hidden flex-none transition-all duration-220 md:block">
 							<Sidebar sidebarOpen={sidebarOpen} onToggle={() => setSidebarOpen((prev) => !prev)} />
 						</aside>
 
 						<main className="flex-1 min-w-0 min-h-[calc(100vh-40px)] overflow-y-auto overflow-x-hidden p-0">
-							<div className="grid grid-cols-[1fr_320px] gap-5">
+							<div className="grid grid-cols-1 gap-5 xl:grid-cols-[minmax(0,1fr)_320px]">
 								<div>
 									<section>
 										<h3 className="text-xs font-semibold uppercase tracking-widest text-accent m-0 mb-2 opacity-90">
@@ -121,7 +121,7 @@ export default function Dashboard() {
 									</section>
 								</div>
 
-								<aside className="space-y-6">
+								<aside className="space-y-6 xl:pt-0">
 									<section className="rounded-lg p-4 mb-6 border-2 bg-red-50 border-red-200 dark:bg-red-600/40 dark:border-red-500/30">
 										<div className="flex items-center gap-3 mb-3">
 											<div className="text-xl text-red-600 dark:text-red-500"><CircleAlert /></div>
