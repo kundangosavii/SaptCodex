@@ -1,7 +1,39 @@
 import { Rocket, LayoutDashboard, CircleDot, BookOpenText, Settings, X, Menu } from 'lucide-react'
 
-export default function Sidebar({ sidebarOpen = true, onToggle = () => {} }) {
+export default function Sidebar({ sidebarOpen = true, onToggle = () => {}, mobileCard = false, onItemClick = () => {} }) {
     const collapsedNavItemStyle = undefined
+
+    if (mobileCard) {
+        return (
+            <div className="rounded-2xl border border-slate-200/80 bg-white/75 p-3 shadow-xl backdrop-blur-sm dark:border-white/15 dark:bg-black/55">
+                <nav className="flex flex-col gap-2">
+                    <a href="#" onClick={onItemClick} className="sidebar-nav-item active">
+                        <span className="w-7 h-7 inline-flex items-center justify-center text-base"><LayoutDashboard /></span>
+                        <span className="font-semibold text-slate-800 dark:text-white">Dashboard</span>
+                    </a>
+                    <a href="#" onClick={onItemClick} className="sidebar-nav-item">
+                        <span className="w-7 h-7 inline-flex items-center justify-center text-base"><CircleDot /></span>
+                        <span className="font-semibold text-slate-800 dark:text-white">Progress</span>
+                    </a>
+                    <a href="#" onClick={onItemClick} className="sidebar-nav-item">
+                        <span className="w-7 h-7 inline-flex items-center justify-center text-base"><BookOpenText /></span>
+                        <span className="font-semibold text-slate-800 dark:text-white">Roadmap</span>
+                    </a>
+                    <a href="#" onClick={onItemClick} className="sidebar-nav-item">
+                        <span className="w-7 h-7 inline-flex items-center justify-center text-base"><Settings /></span>
+                        <span className="font-semibold text-slate-800 dark:text-white">Settings</span>
+                    </a>
+                </nav>
+
+                <div className="mt-3">
+                    <button className="bg-blue-500 w-full flex gap-1 items-center justify-center p-2.5 rounded-lg font-semibold text-sm border-none cursor-pointer shadow-lg hover:shadow-xl transition-shadow text-black">
+                        <span className="text-sm"><Rocket /></span>
+                        <span>Start Practice</span>
+                    </button>
+                </div>
+            </div>
+        )
+    }
 
     return (
         <>
@@ -37,19 +69,19 @@ export default function Sidebar({ sidebarOpen = true, onToggle = () => {} }) {
 
                 {/* Navigation */}
                 <nav className="flex flex-col gap-2.5 mt-1.5 px-2">
-                    <a href="#" style={collapsedNavItemStyle} className={`sidebar-nav-item active ${sidebarOpen ? '' : 'sidebar-nav-item-collapsed'}`}>
+                    <a href="#" onClick={onItemClick} style={collapsedNavItemStyle} className={`sidebar-nav-item active ${sidebarOpen ? '' : 'sidebar-nav-item-collapsed'}`}>
                         <span className="w-7 h-7 inline-flex items-center justify-center text-base"><LayoutDashboard /></span>
                         {sidebarOpen && <span className="font-semibold text-slate-800 dark:text-white">Dashboard</span>}
                     </a>
-                    <a href="#" style={collapsedNavItemStyle} className={`sidebar-nav-item ${sidebarOpen ? '' : 'sidebar-nav-item-collapsed'}`}>
+                    <a href="#" onClick={onItemClick} style={collapsedNavItemStyle} className={`sidebar-nav-item ${sidebarOpen ? '' : 'sidebar-nav-item-collapsed'}`}>
                         <span className="w-7 h-7 inline-flex items-center justify-center text-base"><CircleDot /></span>
                         {sidebarOpen && <span className="font-semibold text-slate-800 dark:text-white">Progress</span>}
                     </a>
-                    <a href="#" style={collapsedNavItemStyle} className={`sidebar-nav-item ${sidebarOpen ? '' : 'sidebar-nav-item-collapsed'}`}>
+                    <a href="#" onClick={onItemClick} style={collapsedNavItemStyle} className={`sidebar-nav-item ${sidebarOpen ? '' : 'sidebar-nav-item-collapsed'}`}>
                         <span className="w-7 h-7 inline-flex items-center justify-center text-base"><BookOpenText /></span>
                         {sidebarOpen && <span className="font-semibold text-slate-800 dark:text-white">Roadmap</span>}
                     </a>
-                    <a href="#" style={collapsedNavItemStyle} className={`sidebar-nav-item ${sidebarOpen ? '' : 'sidebar-nav-item-collapsed'}`}>
+                    <a href="#" onClick={onItemClick} style={collapsedNavItemStyle} className={`sidebar-nav-item ${sidebarOpen ? '' : 'sidebar-nav-item-collapsed'}`}>
                         <span className="w-7 h-7 inline-flex items-center justify-center text-base"><Settings /></span>
                         {sidebarOpen && <span className="font-semibold text-slate-800 dark:text-white">Settings</span>}
                     </a>

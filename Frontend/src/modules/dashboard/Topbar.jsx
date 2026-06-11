@@ -1,5 +1,5 @@
 import React from 'react'
-import { BellRing, Zap } from 'lucide-react'
+import { BellRing, Zap, Menu, X } from 'lucide-react'
 
 export default function Topbar({
   userData,
@@ -8,6 +8,8 @@ export default function Topbar({
   sidebarOpen = true,
   theme = 'dark',
   onThemeToggle = () => {},
+  mobileMenuOpen = false,
+  onMobileMenuToggle = () => {},
 }) {
   const shiftClass = sidebarOpen
     ? 'ml-3 w-[calc(100%-24px)] md:ml-[276px] md:w-[calc(100%-300px)]'
@@ -21,8 +23,17 @@ export default function Topbar({
       className={`mx-6 mt-4 h-20 rounded-xl border border-(--dashboard-border) bg-(--dashboard-panel) px-4 text-(--dashboard-text) transition-[margin-left,width] duration-200 max-[900px]:mx-3 max-[900px]:w-[calc(100%-24px)] md:h-20 md:px-6 ${shiftClass}`}
     >
       <div className="flex h-full items-center justify-between gap-3">
-        <div className="min-w-0 flex-1">
-          <div className="space-y-1">
+        <div className="flex min-w-0 flex-1 items-center gap-2">
+          <button
+            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-(--dashboard-text) transition-colors hover:bg-(--dashboard-hover) md:hidden"
+            onClick={onMobileMenuToggle}
+            type="button"
+            aria-label={mobileMenuOpen ? 'Close mobile menu' : 'Open mobile menu'}
+          >
+            {mobileMenuOpen ? <X size={22} strokeWidth={2.75} /> : <Menu size={22} strokeWidth={2.75} />}
+          </button>
+
+          <div className="space-y-1 min-w-0">
             <div className="text-sm font-bold leading-tight text-(--dashboard-text) md:text-lg">Good Morning, {displayName}</div>
             <div className="text-xs leading-tight text-(--dashboard-muted) md:text-sm">Stay focused, you're doing great today.</div>
           </div>

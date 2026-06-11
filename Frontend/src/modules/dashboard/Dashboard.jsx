@@ -29,6 +29,7 @@ export default function Dashboard() {
 	const [tasks, setTasks] = useState([])
 	const [isLoading, setIsLoading] = useState(true)
 	const [sidebarOpen, setSidebarOpen] = useState(true)
+	const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
 	const { theme, toggleTheme } = useTheme()
 
@@ -73,15 +74,28 @@ export default function Dashboard() {
 		}
 	}
 
-	const mainPaddingClass = sidebarOpen ? 'pl-65' : 'pl-24'
+	const mainPaddingClass = sidebarOpen ? 'pl-4 md:pl-65' : 'pl-4 md:pl-24'
 
 	return (
 		<div className="dashboard-shell flex min-h-screen flex-col overflow-x-hidden">
 				<>
-					<Topbar userData={user} sidebarOpen={sidebarOpen} theme={theme} onThemeToggle={toggleTheme} />
+					<Topbar
+						userData={user}
+						sidebarOpen={sidebarOpen}
+						theme={theme}
+						onThemeToggle={toggleTheme}
+						mobileMenuOpen={mobileMenuOpen}
+						onMobileMenuToggle={() => setMobileMenuOpen((prev) => !prev)}
+					/>
+
+					{mobileMenuOpen && (
+						<div className="mx-3 mt-2 md:hidden">
+							<Sidebar mobileCard onItemClick={() => setMobileMenuOpen(false)} />
+						</div>
+					)}
 
 					<div className={`flex gap-6 items-stretch flex-1 min-w-0 overflow-x-hidden transition-[padding-left] duration-220 ${mainPaddingClass} pr-5 py-5`}>
-						<aside className="sidebar-wrapper flex-none transition-all duration-220">
+						<aside className="sidebar-wrapper hidden flex-none transition-all duration-220 md:block">
 							<Sidebar sidebarOpen={sidebarOpen} onToggle={() => setSidebarOpen((prev) => !prev)} />
 						</aside>
 
