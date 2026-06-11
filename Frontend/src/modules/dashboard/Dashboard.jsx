@@ -28,7 +28,7 @@ export default function Dashboard() {
 	const [user, setUser] = useState(null)
 	const [tasks, setTasks] = useState([])
 	const [isLoading, setIsLoading] = useState(true)
-	const sidebarOpen = true
+	const [sidebarOpen, setSidebarOpen] = useState(true)
 
 	const { theme, toggleTheme } = useTheme()
 
@@ -73,14 +73,16 @@ export default function Dashboard() {
 		}
 	}
 
+	const mainPaddingClass = sidebarOpen ? 'pl-65' : 'pl-24'
+
 	return (
 		<div className="dashboard-shell flex min-h-screen flex-col overflow-x-hidden">
 				<>
 					<Topbar userData={user} sidebarOpen={sidebarOpen} theme={theme} onThemeToggle={toggleTheme} />
 
-					<div className="flex gap-6 items-stretch flex-1 min-w-0 overflow-x-hidden transition-[padding-left] duration-220 pl-65 pr-5 py-5">
+					<div className={`flex gap-6 items-stretch flex-1 min-w-0 overflow-x-hidden transition-[padding-left] duration-220 ${mainPaddingClass} pr-5 py-5`}>
 						<aside className="sidebar-wrapper flex-none transition-all duration-220">
-							<Sidebar />
+							<Sidebar sidebarOpen={sidebarOpen} onToggle={() => setSidebarOpen((prev) => !prev)} />
 						</aside>
 
 						<main className="flex-1 min-w-0 min-h-[calc(100vh-40px)] overflow-y-auto overflow-x-hidden p-0">
