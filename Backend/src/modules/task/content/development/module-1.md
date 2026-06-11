@@ -69,3 +69,76 @@ Constraints:
 
 Output:
 - Test using Postman
+
+
+## Task
+id: dev_express_api,
+track: development,
+type: learning,
+level: beginner,
+day: 2,
+module: JavaScript,
+difficulty: easy,
+order: 1,
+duration: 45,
+dependsOn:[dev_node_basics]
+---
+
+Tasks:
+- Execute:
+  - Basic Express server
+  - 2 routes (GET, POST)
+
+Constraints:
+- No tutorial copy-paste
+
+Output:
+- Test using Postman
+
+## Task
+id: dev_express_api,
+track: development,
+type: learning,
+level: beginner,
+day: 3,
+module: JavaScript,
+difficulty: easy,
+order: 1,
+duration: 45,
+dependsOn:[dev_node_basics]
+---
+
+Tasks:
+- Execute:
+  - Basic Express server
+  - 2 routes (GET, POST)
+
+Constraints:
+- No tutorial copy-paste
+
+Output:
+- Test using Postman
+
+## Task
+id: dev_express_api,
+track: development,
+type: learning,
+level: beginner,
+day: 4,
+module: JavaScript,
+difficulty: easy,
+order: 1,
+duration: 45,
+dependsOn:[dev_node_basics]
+---
+
+Tasks:
+- Execute:
+  - Basic Express server
+  - 2 routes (GET, POST)
+
+Constraints:
+- No tutorial copy-paste
+
+Output:
+- Test using Postman
