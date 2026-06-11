@@ -273,7 +273,7 @@
 }
 
 .task-card-action {
-	whitespace: nowrap;
+	white-space: nowrap;
 	align-self: flex-start;
 	border-radius: 12px;
 	padding: 10px 16px;
