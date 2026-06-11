@@ -7,10 +7,26 @@ import TaskCard from './components/TaskCard.jsx'
 import { CircleAlert, CircleCheckBig, Flame } from 'lucide-react'
 import { useTheme } from '../../context/ThemeContext'
 import { getUser } from '../../api/user'
+import { getTask } from '../../api/task'
+
+function normalizeTaskBlock(task, index) {
+	const title = task?.tasks?.[0]?.replace(/:$/, '') || `Task ${index + 1}`
+
+	return {
+		id: `${index}-${title}`,
+		title,
+		tasks: task?.tasks || [],
+		constraints: task?.constraints || [],
+		output: task?.output || [],
+		status: 'active',
+		action: task?.output?.[0] || 'Review task',
+	}
+}
 
 export default function Dashboard() {
 	const [isOnboarded, setIsOnboarded] = useState(false)
 	const [user, setUser] = useState(null)
+	const [tasks, setTasks] = useState([])
 	const [isLoading, setIsLoading] = useState(true)
 	const sidebarOpen = true
 
@@ -34,6 +50,7 @@ export default function Dashboard() {
 
 	useEffect(() => {
 		fetchUser()
+		fetchTasks()
 	}, [])
 
 	useEffect(() => {
@@ -45,39 +62,16 @@ export default function Dashboard() {
 		setIsOnboarded(true)
 	}
 
-	const tasks = [
-		{
-			id: 1,
-			difficulty: 'Medium',
-			title: 'Node.js Fundamentals',
-			tasks: ['Learn:', 'What is Node.js', 'Event loop (basic idea)', 'Execute:', 'Run a simple script using node'],
-			constraints: [],
-			output: ['Write 3 key points'],
-			status: 'todo',
-			action: 'Start',
-		},
-		{
-			id: 2,
-			difficulty: 'Medium',
-			topic: 'Topic: Architectures',
-			title: 'Review System Design Basics',
-			tasks: ['Focus on:', 'Consistency, Availability, and Partition Tolerance'],
-			constraints: ['Use CAP theorem as the guide'],
-			output: ['Summarize the trade-offs'],
-			status: 'todo',
-			action: 'Open Link',
-		},
-		{
-			id: 3,
-			difficulty: 'Advanced',
-			title: 'SQL Performance Tuning',
-			tasks: ['Learn:', 'Indexing patterns', 'Query optimization'],
-			constraints: ['Keep queries measurable'],
-			output: ['Write 3 tuning notes'],
-			status: 'completed',
-			action: 'Completed',
-		},
-	]
+	const fetchTasks = async () => {
+		try{
+			const response = await getTask()
+			const tasksData = response.data?.data || []
+			setTasks(tasksData.map(normalizeTaskBlock))
+		} catch (error) {
+			console.error('Failed to load tasks:', error.response ? error.response.data : error.message)
+			setTasks([])
+		}
+	}
 
 	return (
 		<div className="dashboard-shell flex min-h-screen flex-col overflow-x-hidden">
@@ -116,9 +110,13 @@ export default function Dashboard() {
 											Today's Roadmap
 										</h1>
 										<div className="space-y-3">
-											{tasks.map((task) => (
-												<TaskCard key={task.id} task={task} />
-											))}
+											{tasks.length > 0 ? (
+												tasks.map((task) => <TaskCard key={task.id} task={task} />)
+											) : (
+												<p className="rounded-lg border border-slate-200 bg-white p-4 text-sm text-slate-500 dark:border-white/10 dark:bg-white/5 dark:text-slate-400">
+													No tasks available for today.
+												</p>
+											)}
 										</div>
 									</section>
 								</div>
