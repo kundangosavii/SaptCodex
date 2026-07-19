@@ -4,6 +4,8 @@ import {
     LogoutService
 } from "./auth.service.js";
 
+import User from "../user/user.model.js";
+
 const parseCookies = (cookieHeader = "") => {
     return cookieHeader.split(';').reduce((cookies, cookie) => {
         const [rawKey, ...rawValue] = cookie.trim().split('=');
@@ -28,12 +30,34 @@ const SignupController = async (req, res) => {
     const user = await CreateUserService({ fullname, email, password, onboarding });
 
     return res.status(201).json({
-        message: 'User created successfully',
-        user: {
-            fullname: user.fullname,
-            email: user.email,
-        }
+        message: 'Signup successful! Please check your email to verify your account.',
     });
+}
+
+const verifyEmailController = async (req, res) => {
+    try {
+    const { token } = req.query;
+
+    // Find user with matching token that hasn't expired
+    const user = await User.findOne({
+      varificationToken: token,
+      varificationTokenExpiry: { $gt: Date.now() }
+    });
+
+
+    if (!user) {
+      return res.status(400).json({ message: "Invalid or expired verification token." });
+    }
+
+    user.isVerified = true;
+    user.verificationToken = undefined; 
+    user.verificationTokenExpires = undefined; 
+    await user.save();
+
+    res.status(200).json({ message: "Email verified successfully! You can now log in." });
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
 }
 
 const LoginController = async (req, res) => {
@@ -89,4 +113,4 @@ const LogoutController = async (req, res) => {
         });
 }
 
-export {SignupController, LoginController, LogoutController};
+export {SignupController, LoginController, LogoutController, verifyEmailController};
