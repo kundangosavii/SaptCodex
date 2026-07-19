@@ -52,6 +52,18 @@ const userSchema = new mongoose.Schema({
         type: Date,
     },
     
+    isVarified: {
+        type: Boolean,
+        default: false,
+    },
+
+    varificationToken: {
+        type: String,
+    },
+
+    varificationTokenExpiry: {
+        type: Date,
+    },
 
     refreshToken: {
         type: String,
