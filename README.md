@@ -4,6 +4,8 @@
 
 ## Features
 
+### IN VERSION_1
+
 * Personalized roadmap based on user goals
 * Daily task execution system
 * Curated resources (DSA, backend, etc.)
