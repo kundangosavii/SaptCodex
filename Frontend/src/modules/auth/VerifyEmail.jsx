@@ -37,7 +37,7 @@ export default function VerifyEmail() {
 
   return (
     <div style={{ padding: '2rem', textAlign: 'center' }}>
-      <h2>Email Verification</h2>
+      <h1>Email Verification</h1>
       {status === 'verifying' && <p>Verifying your email, please wait...</p>}
       {status === 'success' && <p style={{ color: 'green' }}>{message} Redirecting to login...</p>}
       {status === 'error' && <p style={{ color: 'red' }}>{message}</p>}

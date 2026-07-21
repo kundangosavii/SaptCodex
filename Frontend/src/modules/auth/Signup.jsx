@@ -28,7 +28,6 @@ function Signup() {
 		password: '',
 		confirmPassword: '',
 		consent: false,
-		// Onboarding fields moved into signup form
 		goal: '',
 		level: '',
 		placementDate: '',
